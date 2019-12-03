@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+
+    <body style="background-color:#FFFFFF">
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+
+<div id="main2" style="width: 700px;height:520px;margin-top: -50px;align:top"></div>
+        
+		
+        <script type="text/javascript">
+            var dom = document.getElementById("main2");
+			var myChart6 = echarts.init(dom);
+			var app = {};
+			option = null;
+			option = {
+				title: {
+					text: ''
+				},
+				tooltip: {
+					trigger: 'axis'
+				},
+				legend: {
+					x: '90%',
+					y: '50%',
+					data:['1月','2月','3月']
+				},
+				radar: [
+					{
+						indicator: [
+							{text: '城市景观广告', max: 100},
+							{text: '字幕条', max: 100},
+							{text: '栏目冠名', max: 100},
+							{text: '预警信息冠名', max: 100},
+							{text: '三通版无声硬广', max: 100}
+						],
+						center: ['25%','30%'],
+						radius: 80
+					},					
+					{
+						indicator: [
+							{text: 'CCTV-1', max: 100},
+							{text: 'CCTV-2', max: 100},
+							{text: 'CCTV-7', max: 100},
+							{text: '旅游卫视', max: 100},
+							{text: '中国教育电视台', max: 100},
+							{text: '中国气象频道', max: 100},
+							{text: '中央人民广播电台', max: 100},
+							{text: '中国天气网', max: 100},
+							{text: '中国天气网移动端', max: 100}
+						],
+						radius: 80,
+						center: ['25%','70%'],
+					},
+					{
+						indicator: (function (){
+							var res = [];
+							for (var i = 1; i <= 6; i++) {
+								res.push({text:i+'单元',max:100});
+							}
+							return res;
+						})(),
+						center: ['75%','30%'],
+						radius: 80
+					},
+					{
+						indicator: [
+							{text: '特级城市', max: 100},
+							{text: '一级城市', max: 100},
+							{text: '二级城市', max: 100},
+							{text: '三级城市', max: 100}
+						],
+						center: ['75%','70%'],
+						radius: 80
+					}
+				],
+				series: [
+					{
+						type: 'radar',
+						 tooltip: {
+							trigger: 'item'
+						},
+						itemStyle: {normal: {areaStyle: {type: 'default'}}},
+						data: [
+							{
+								value: [60,73,85,40,77],
+								name: '1月'
+							},
+							{
+								value: [46,85,17,60,66],
+								name: '2月'
+							},
+							{
+								value: [70,65,79,71,82],
+								name: '3月'
+							}
+						]
+					},
+					{
+						type: 'radar',
+						radarIndex: 1,
+						data: [
+							{
+								value: [85, 90, 90, 95, 95,86,88,69,75],
+								name: '1月'
+							},
+							{
+								value: [95, 80, 95, 90, 93,83,67,89,56],
+								name: '2月'
+							},
+							{
+								value: [73, 85, 90, 81, 79,88,88,92,90],
+								name: '3月'
+							}
+						]
+					},
+					{
+						type: 'radar',
+						radarIndex: 2,
+						itemStyle: {normal: {areaStyle: {type: 'default'}}},
+						data: [
+							{
+								name: '1月',
+								value: [42.6, 5.9, 9.0, 26.4, 28.7, 70.7],
+							},
+							{
+								name:'2月',
+								value:[2.0, 54.9, 7.0, 23.2, 25.6, 76.7]
+							},
+							{
+								name:'3月',
+								value:[75.6, 82.2, 48.7, 18.8, 6.0, 2.3]
+							}
+						]
+					},
+					{
+						type: 'radar',
+						radarIndex: 3,
+						itemStyle: {normal: {areaStyle: {type: 'default'}}},
+						data: [
+							{
+								name: '1月',
+								value: [42.6, 25.9, 69.0, 76.4],
+							},
+							{
+								name:'2月',
+								value:[32.0, 54.9, 87.0, 23.2]
+							},
+							{
+								name:'3月',
+								value:[75.6, 82.2, 48.7,56.3]
+							}
+						]
+					}
+				]
+			};
+
+			if (option && typeof option === "object") {
+				myChart6.clear();
+				myChart6.resize();
+				myChart6.setOption(option,true);
+			};
+			
+			
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>

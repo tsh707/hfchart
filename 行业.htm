@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+
+    <div id="main11" style="width:960px;height:370px">aa</div>
+        
+		
+        <script type="text/javascript">
+		
+			var dom = document.getElementById("main11");
+			var myChart11 = echarts.init(dom);
+			var app = {};
+			app.title = '行业分析';
+
+			var colors = ['#5793f3', '#d14a61', '#675bba'];
+
+			option = {
+				color: colors,
+
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: {
+						type: 'cross'
+					}
+				},
+				grid: {
+					right: '20%'
+				},
+				toolbox: {
+					show:false,
+					feature: {
+						dataView: {show: true, readOnly: false},
+						restore: {show: true},
+						saveAsImage: {show: true}
+					}
+				},
+				legend: {
+					data:['总体行业','电视行业','华风集团']
+				},
+				xAxis: [
+					{
+						type: 'category',
+						axisTick: {
+							alignWithLabel: true
+						},
+						data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+					}
+				],
+				yAxis: [
+					{
+						type: 'value',
+						name: '总体(亿元)',
+						min: 0,
+						max: 250,
+						position: 'right',
+						axisLine: {
+							lineStyle: {
+								color: colors[0]
+							}
+						},
+						axisLabel: {
+							formatter: '{value} ¥'
+						}
+					},
+					{
+						type: 'value',
+						name: '电视(千万元)',
+						min: 0,
+						max: 250,
+						position: 'right',
+						offset: 80,
+						axisLine: {
+							lineStyle: {
+								color: colors[1]
+							}
+						},
+						axisLabel: {
+							formatter: '{value} ¥'
+						}
+					},
+					{
+						type: 'value',
+						name: '华风集团(百万元)',
+						min: 0,
+						max: 25,
+						position: 'left',
+						axisLine: {
+							lineStyle: {
+								color: colors[2]
+							}
+						},
+						axisLabel: {
+							formatter: '{value} ¥'
+						}
+					}
+				],
+				series: [
+					{
+						name:'总体行业',
+						type:'bar',
+						data:[6.0, 4.9, 7.0, 3.2, 5.6, 26.7, 35.6, 62.2, 32.6, 6.0, 4.4, 5.3]
+					},
+					{
+						name:'电视行业',
+						type:'bar',
+						yAxisIndex: 1,
+						data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 105.6, 112.2, 48.7, 18.8, 6.0, 2.3]
+					},
+					{
+						name:'华风集团',
+						type:'line',
+						yAxisIndex: 2,
+						data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+					}
+				]
+			};
+			if (option && typeof option === "object") {
+				myChart11.clear();
+				myChart11.resize();
+				myChart11.setOption(option,true);
+			};
+
+
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>

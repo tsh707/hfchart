@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		  <script src="js/jquery-1.10.2.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+	<div id="main1" style="width:960px;height:350px"></div>
+
+
+<script type="text/javascript" src="js/bmap.min.js"></script>
+ <script type="text/javascript">
+        var dom1 = document.getElementById("main1");
+		var myChart1 = echarts.init(dom1);
+		 option = {
+			tooltip : {
+				trigger: 'axis',
+				axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+					type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+				}
+			},
+			title : {
+					text: '当月分区域/行业广告费用分布情况',
+					x:'center'
+				},
+			legend: {
+				y:'30px',
+				data: ['东北','华北','西南','西北','华东','华南','华中']
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			xAxis:  {
+				axisLabel: {
+					rotate: 60,
+				},
+				type: 'category',
+				data: ['药品','食品','饮料','酒精类饮品','化妆品/浴室用品','清洁用品','邮电通讯','IT产品及服务','家用电器','家居用品','个人用品','衣着','娱乐及休闲','商业及服务性行业','金融业','交通','房地产/建筑工程行业','工业用品','农业','烟草类','活动类','杂类']
+			},			
+			yAxis: {
+				type: 'value'
+			},
+			series: [
+				{
+					name: '东北',
+					type: 'bar',
+					stack: '总量',
+					label: {
+						normal: {
+							show: true,
+							position: 'insideRight'
+						},
+						formatter: function(params) {
+							if (params.value > 0) {
+								return params.value;
+							} else {
+								return '';
+							}
+						}
+					},
+					data: [329,,231,,,,,156,,,,,,,,,,,,,,]
+				},
+				{
+					name: '华北',
+					type: 'bar',
+					stack: '总量',
+					label: {
+						normal: {
+							show: true,
+							position: 'insideRight'
+						}
+					},
+					data: [,111,,,,,,,,,,,,,,,426,,,,,764]
+				},
+				{
+					name: '西南',
+					type: 'bar',
+					stack: '总量',
+					label: {
+						normal: {
+							show: true,
+							position: 'insideRight'
+						}
+					},
+					data: [,,155,,,,333,,,,,,,,,,,,631,,,]
+				},
+				{
+					name: '西北',
+					type: 'bar',
+					stack: '总量',
+					label: {
+						normal: {
+							show: true,
+							position: 'insideRight'
+						}
+					},
+					data: [,,,,289,,,,,,,,,,299,,,534,,,,]
+				},
+				{
+					name: '华东',
+					type: 'bar',
+					stack: '总量',
+					label: {
+						normal: {
+							show: true,
+							position: 'insideRight'
+						}
+					},
+					data: [,,,,,,342,,,,443,,563,,,,,,,,367,]
+				},
+				{
+					name: '华南',
+					type: 'bar',
+					stack: '总量',
+					label: {
+						normal: {
+							show: true,
+							position: 'insideRight'
+						}
+					},
+					data: [,,,,,,,,,388,,,,,268,,,312,,,,223]
+				},
+				{
+					name: '华中',
+					type: 'bar',
+					stack: '总量',
+					label: {
+						normal: {
+							show: true,
+							position: 'insideRight'
+						}
+					},
+					data: [,,,,,,423,,,,273,,199,,,,,,111,,,]
+				}
+			]
+		};
+            // 为echarts对象加载数据
+            myChart1.setOption(option);
+
+
+
+
+
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>

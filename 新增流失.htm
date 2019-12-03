@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+
+    <div id="main11" style="width:960px;height:370px">aa</div>
+        
+		
+        <script type="text/javascript">
+		
+			var dom = document.getElementById("main11");
+			var myChart11 = echarts.init(dom);
+			var app = {};
+			app.title = '客户保有分析';
+
+			
+			option = {
+			title : {
+				text: '客户流入流出关系图',
+				subtext: '',
+				x: 'center',
+				align: 'right'
+			},
+			grid: {
+				bottom: 80
+			},
+			toolbox: {
+				show:false,
+				feature: {
+					dataZoom: {
+						yAxisIndex: 'none'
+					},
+					restore: {},
+					saveAsImage: {}
+				}
+			},
+			tooltip : {
+				trigger: 'axis',
+				axisPointer: {
+					type: 'cross',
+					animation: false,
+					label: {
+						backgroundColor: '#505765'
+					}
+				}
+			},
+			legend: {
+				data:['流失量','新增量'],
+				x: 'left'
+			},
+			dataZoom: [
+				{
+					show: true,
+					realtime: true,
+					start: 1,
+					end: 185
+				},
+				{
+					type: 'inside',
+					realtime: true,
+					start: 1,
+					end: 185
+				}
+			],
+			xAxis : [
+				{
+					type : 'category',
+					boundaryGap : false,
+					axisLine: {onZero: false},
+					data : [
+						'2017年10月',
+						'2017年11月',
+						'2017年12月',
+						'2018年1月',
+						'2018年2月',
+						'2018年3月',
+						'2018年4月',
+						'2018年5月',
+						'2018年6月',
+						'2018年7月',
+						'2018年8月',
+						'2018年9月'
+					].map(function (str) {
+						return str.replace(' ', '\n')
+					})
+				}
+			],
+			yAxis: [
+				{
+					name: '流失量(个)',
+					type: 'value',
+					max: 100
+				},
+				{
+					name: '新增量(个)',
+					nameLocation: 'start',
+					max: 100,
+					type: 'value',
+					inverse: true
+				}
+			],
+			series: [
+				{
+					name:'流失量',
+					type:'line',
+					animation: false,
+					areaStyle: {
+					},
+					lineStyle: {
+						width: 1
+					},
+					markArea: {
+						silent: true,
+						
+					},
+					data:[
+						23,11,17,16,8,0,2,65,7,22,17,15
+					]
+				},
+				{
+					name:'新增量',
+					type:'line',
+					yAxisIndex:1,
+					animation: false,
+					areaStyle: {
+					},
+					lineStyle: {
+						width: 1
+					},
+					markArea: {
+						silent: true,
+						
+					},
+					data: [
+						9,12,22,21,16,17,5,75,7,31,12,16
+					]
+				}
+			]
+		};
+
+			if (option && typeof option === "object") {
+				myChart11.clear();
+				myChart11.resize();
+				myChart11.setOption(option,true);
+			};
+
+
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>

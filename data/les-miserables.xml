@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://www.gexf.net/1.2draft" version="1.2" xmlns:viz="http://www.gexf.net/1.2draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd">
+  <meta lastmodifieddate="2014-01-30">
+    <creator>Gephi 0.8.1</creator>
+    <description></description>
+  </meta>
+  <graph defaultedgetype="undirected" mode="static">
+    <attributes class="node" mode="static">
+      <attribute id="modularity_class" title="Modularity Class" type="integer"></attribute>
+    </attributes>
+    <nodes>
+      <node id="0" label="合肥骆岗机场">
+        <attvalues>
+          <attvalue for="modularity_class" value="30"></attvalue>
+        </attvalues>
+        <viz:size value="68.685715"></viz:size>
+        <viz:position x="-66.82776" y="299.6904" z="0.0"></viz:position>
+        <viz:color r="235" g="81" b="72"></viz:color>
+      </node>
+      <node id="11" label="西安咸阳机场">
+        <attvalues>
+          <attvalue for="modularity_class" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="75.0"></viz:size>
+        <viz:position x="-287.93029" y="-6.8120565" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>      
+      <node id="23" label="北京首都机场">
+        <attvalues>
+          <attvalue for="modularity_class" value="2"></attvalue>
+        </attvalues>
+        <viz:size value="112.4"></viz:size>
+        <viz:position x="113.42786" y="-289.44803" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>      
+      <node id="48" label="广州白云机场">
+        <attvalues>
+          <attvalue for="modularity_class" value="3"></attvalue>
+        </attvalues>
+        <viz:size value="90.600006"></viz:size>
+        <viz:position x="387.89572" y="510.462326" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>      
+      <node id="55" label="上海虹桥机场">
+        <attvalues>
+          <attvalue for="modularity_class" value="4"></attvalue>
+        </attvalues>
+        <viz:size value="80.37143"></viz:size>
+        <viz:position x="376.44687" y="113.805411" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>
+	  
+	  <node id="56" label="杭州萧山机场">
+        <attvalues>
+          <attvalue for="modularity_class" value="5"></attvalue>
+        </attvalues>
+        <viz:size value="73.37143"></viz:size>
+        <viz:position x="280.44687" y="140.805411" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>
+	  <node id="57" label="福州长乐机场">
+        <attvalues>
+          <attvalue for="modularity_class" value="6"></attvalue>
+        </attvalues>
+        <viz:size value="73.37143"></viz:size>
+        <viz:position x="320.44687" y="450.805411" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>
+	  <node id="58" label="太原武宿机场">
+        <attvalues>
+          <attvalue for="modularity_class" value="7"></attvalue>
+        </attvalues>
+        <viz:size value="53.37143"></viz:size>
+        <viz:position x="-300.44687" y="-130.805411" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>
+	  <node id="59" label="沈阳桃仙机场">
+        <attvalues>
+          <attvalue for="modularity_class" value="8"></attvalue>
+        </attvalues>
+        <viz:size value="63.37143"></viz:size>
+        <viz:position x="140.44687" y="-420.805411" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>
+      
+    </nodes>
+    <edges>
+      <edge id="0.4" source="11" target="0">
+        <attvalues></attvalues>
+      </edge>
+      <edge id="1.2" source="0" target="23" weight="1234.0">
+        <attvalues>1234</attvalues>
+      </edge>
+      <edge id="0.65" source="0" target="48" weight="10.0">
+        <attvalues>1634</attvalues>
+      </edge>
+      <edge id="0.21" source="0" target="55" weight="6.0">
+        <attvalues>230</attvalues>
+      </edge>
+	  <edge id="0.33" source="0" target="56" weight="6.0">
+        <attvalues>154</attvalues>
+      </edge>
+	  <edge id="0.62" source="0" target="57" weight="6.0">
+        <attvalues>257</attvalues>
+      </edge>
+	  <edge id="0.12" source="0" target="58" weight="6.0">
+        <attvalues>367</attvalues>
+      </edge>
+	  <edge id="0.08" source="0" target="59" weight="6.0">
+        <attvalues>529</attvalues>
+      </edge>
+	  
+      <edge id="1.12" source="11" target="23">
+        <attvalues></attvalues>
+      </edge>
+      <edge id="0.91" source="11" target="48">
+        <attvalues></attvalues>
+      </edge>
+      <edge id="0.87" source="11" target="55">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="0.79" source="11" target="56">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="0.46" source="11" target="57">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="0.26" source="11" target="58">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="0.74" source="11" target="59">
+        <attvalues></attvalues>
+      </edge>
+	  
+      <edge id="2.43" source="23" target="48" weight="9.0">
+        <attvalues></attvalues>
+      </edge>
+      <edge id="3.66" source="23" target="55" weight="10.0">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="1.79" source="23" target="56" weight="5.0">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="1.62" source="23" target="57" weight="2.0">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="1.15" source="23" target="58" weight="2.0">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="1.33" source="23" target="59" weight="2.0">
+        <attvalues></attvalues>
+      </edge>
+	  
+      <edge id="2.96" source="48" target="55">
+        <attvalues></attvalues>
+      </edge>	  
+	  <edge id="2.11" source="48" target="56">
+        <attvalues></attvalues>
+      </edge>	
+	  <edge id="1.02" source="48" target="57">
+        <attvalues></attvalues>
+      </edge>	
+	  <edge id="1.22" source="48" target="58">
+        <attvalues></attvalues>
+      </edge>	
+	  <edge id="1.73" source="48" target="59">
+        <attvalues></attvalues>
+      </edge>
+	  
+	  
+	  <edge id="1.97" source="55" target="57">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="1.66" source="55" target="58">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="1.85" source="55" target="59">
+        <attvalues></attvalues>
+      </edge>
+
+	  <edge id="0.96" source="56" target="57">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="0.73" source="56" target="58">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="1.25" source="56" target="59">
+        <attvalues></attvalues>
+      </edge>
+	  
+	  <edge id="0.88" source="57" target="58">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="1.17" source="57" target="59">
+        <attvalues></attvalues>
+      </edge>
+	  
+	  <edge id="0.65" source="58" target="59">
+        <attvalues></attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+	<table>
+		<tr><td colspan=3>平台资源分布情况</td></tr>
+		<tr>
+			<td><div id="main1" style="width:330px;height:240px;margin-top:-30px">aa</div></td>
+        </tr>
+	</table>
+        <script type="text/javascript">
+			var myChart1 = echarts.init(document.getElementById("main1"));
+
+			var app = {};
+			app.title = '坐标轴刻度与标签对齐';
+
+			option1 = {
+				color: ['#3398DB'],
+				tooltip : {
+					trigger: 'axis',
+					axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+						type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					containLabel: true
+				},
+				xAxis : [
+					{
+						type : 'category',
+						data : ['电视', '广播', '网站', '手机'],
+						axisTick: {
+							alignWithLabel: true
+						}
+					}
+				],
+				yAxis : [
+					{
+						type : 'value'
+					}
+				],
+				series : [
+					{
+						name:'资源量',
+						type:'bar',
+						barWidth: '60%',
+						data:[334, 90, 130, 20]
+					}
+				]
+			};
+			
+			
+
+			if (option1 && typeof option1 === "object") {
+				myChart1.clear();
+				myChart1.resize();
+				myChart1.setOption(option1,true);
+				
+			};
+
+
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>

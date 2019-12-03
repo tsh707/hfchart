@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+
+    <div id="main11" style="width:460px;height:370px">aa</div>
+        
+		
+        <script type="text/javascript">
+		
+			var dom = document.getElementById("main11");
+			var myChart11 = echarts.init(dom);
+			var app = {};
+			option1 = null;
+			option1 = {
+				title: {
+					text: '各账户分月销售额满档情况',
+					x:'center'
+				},
+				tooltip: {
+					trigger: 'axis'
+				},				
+				legend: {
+					x: 'center',
+					y: 'bottom',
+					data:['1月','2月','3月','4月','5月','6月'],
+					textStyle:{//图例文字的样式
+						//color:'#fff'
+					}
+				},
+				radar: [
+					{
+						indicator: [
+							{text: '账户A', max: 100},
+							{text: '账户B', max: 100},
+							{text: '账户C', max: 100},
+							{text: '账户D', max: 100},
+							{text: '账户E', max: 100}
+						],
+						//center: ['25%','45%'],
+						radius: 80
+					}
+				],
+				series: [
+					{
+						type: 'radar',
+						 tooltip: {
+							trigger: 'item'
+						},
+						itemStyle: {normal: {areaStyle: {type: 'default'}}},
+						data: [
+							{
+								value: [60,73,85,40,77],
+								name: '1月'
+							},
+							{
+								value: [46,85,17,60,66],
+								name: '2月'
+							},
+							{
+								value: [70,65,79,71,82],
+								name: '3月'
+							},
+							{
+								value: [76,15,33,42,59],
+								name: '4月'
+							},
+							{
+								value: [37,52,66,88,20],
+								name: '5月'
+							},
+							{
+								value: [87,65,28,45,99],
+								name: '6月'
+							}							
+						]
+					}
+				]
+			};
+			if (option1 && typeof option1 === "object") {
+				myChart11.clear();
+				myChart11.resize();
+				myChart11.setOption(option1,true);
+			};
+
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>

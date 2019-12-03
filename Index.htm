@@ -1,0 +1,1207 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+
+    <body style="background-color:#000000">
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+		<!--div class="divCenter">福建省广告市场健康度一览</div-->
+		<table>
+			<tr><td colspan=2 align="center"><h1 style="background-color:#000;margin-top:-1px;margin-bottom:-1px;color:#FFF">华风集团广告资源管理总控</h1></td></tr>
+			<tr>
+				<td ><div id="main" style="width:660px;height:300px;margin-top: 10px;align:left"></div></td>
+				<td align="top"><div id="main2" style="width: 660px;height:250px;margin-top: -20px;align:top"></div></td>
+			</tr>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							
+							<td><div id="main12" style="width:330px;height:270px;margin-top: 0px;align:left">bb</div></td>
+							<td><div id="mainMonth" style="width:330px;height:270px;margin-top: 0px;align:left">aa</div></td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table>
+						<tr>
+							
+							<td><div id="mainQuarter" style="width:330px;height:320px;margin-top: -30px;align:left">bb</div></td>
+							<td><div id="mainQs" style="width:330px;height:270px;margin-top: 0px;align:top">bb</div></td>
+						</tr>
+					</table>
+				
+				</td>
+			</tr>
+		</table>
+        
+		
+        <script type="text/javascript">
+            var dom = document.getElementById("main2");
+			var myChart6 = echarts.init(dom);
+			var app = {};
+			option = null;
+			/*option = {
+				backgroundColor: '#000',
+				title: {
+					text: '分类饱和度',
+					x:'center',
+					textStyle:{//标题内容的样式
+						color:'#EAEAEA',//京东红
+						fontStyle:'normal',//主标题文字字体风格，默认normal，有italic(斜体),oblique(斜体)
+						fontWeight:"lighter",//可选normal(正常)，bold(加粗)，bolder(加粗)，lighter(变细)，100|200|300|400|500...
+						fontFamily:"san-serif",//主题文字字体，默认微软雅黑
+						fontSize:28//主题文字字体大小，默认为18px
+					}
+				},
+				tooltip: {
+					trigger: 'item',
+					backgroundColor : 'rgba(0,0,250,0.2)'
+				},
+				legend: {
+					type: 'scroll',
+					bottom: 10,
+					data: (function (){
+						var list = [];
+						for (var i = 1; i <=3; i++) {
+							list.push(i + 6 + '月');
+						}
+						return list;
+					})()
+				},
+				visualMap: {
+					top: 'middle',
+					right: 10,
+					color: ['red', 'yellow'],
+					calculable: true
+				},
+				radar: {
+				   indicator : [
+					   { text: '城市景观广告', max: 400},
+					   { text: '字幕条', max: 400},
+					   { text: '栏目冠名', max: 400},
+					   { text: '预警信息冠名', max: 400},
+					   { text: '三通版无声硬广', max: 400}
+					]
+				},
+				series : (function (){
+					var series = [];
+					series.push({
+							name:'饱和度指数',
+							type: 'radar',
+							symbol: 'none',
+							lineStyle: {
+								width: 1
+							},
+							emphasis: {
+								areaStyle: {
+									color: 'rgba(0,250,0,0.3)'
+								}
+							},
+							data:[
+							  {
+								value:[350,200,400,166,230],
+								name: '7月'
+							  }
+							]
+						});
+					series.push({
+							name:'饱和度指数',
+							type: 'radar',
+							symbol: 'none',
+							lineStyle: {
+								width: 1
+							},
+							emphasis: {
+								areaStyle: {
+									color: 'rgba(125,250,0,0.3)'
+								}
+							},
+							data:[
+							  {
+								value:[240,100,300,266,130],
+								name: '8月'
+							  }
+							]
+						});
+					series.push({
+							name:'饱和度指数',
+							type: 'radar',
+							symbol: 'none',
+							lineStyle: {
+								width: 1
+							},
+							emphasis: {
+								areaStyle: {
+									color: 'rgba(255,100,0,0.3)'
+								}
+							},
+							data:[
+							  {
+								value:[150,300,330,366,330],
+								name: '9月'
+							  }
+							]
+						});
+					return series;
+				})()
+			};*/
+			option = {
+				title: {
+					text: ''
+				},
+				tooltip: {
+					trigger: 'axis'
+				},				
+				legend: {
+					x: 'center',
+					y: 'bottom',
+					data:['1月','2月','3月'],
+					textStyle:{//图例文字的样式
+						color:'#fff'
+					}
+				},
+				radar: [
+					{
+						indicator: [
+							{text: '城市景观广告', max: 100},
+							{text: '字幕条', max: 100},
+							{text: '栏目冠名', max: 100},
+							{text: '预警信息冠名', max: 100},
+							{text: '三通版无声硬广', max: 100}
+						],
+						center: ['25%','45%'],
+						radius: 80
+					},						
+					{
+						indicator: [
+							{text: '特级城市', max: 100},
+							{text: '一级城市', max: 100},
+							{text: '二级城市', max: 100},
+							{text: '三级城市', max: 100}
+						],
+						center: ['75%','45%'],
+						radius: 80
+					}
+				],
+				series: [
+					{
+						type: 'radar',
+						 tooltip: {
+							trigger: 'item'
+						},
+						itemStyle: {normal: {areaStyle: {type: 'default'}}},
+						data: [
+							{
+								value: [60,73,85,40,77],
+								name: '1月'
+							},
+							{
+								value: [46,85,17,60,66],
+								name: '2月'
+							},
+							{
+								value: [70,65,79,71,82],
+								name: '3月'
+							}
+						]
+					},					
+					{
+						type: 'radar',
+						radarIndex: 1,
+						itemStyle: {normal: {areaStyle: {type: 'default'}}},
+						data: [
+							{
+								name: '1月',
+								value: [42.6, 25.9, 69.0, 76.4],
+							},
+							{
+								name:'2月',
+								value:[32.0, 54.9, 87.0, 23.2]
+							},
+							{
+								name:'3月',
+								value:[75.6, 82.2, 48.7,56.3]
+							}
+						]
+					}
+				]
+			};
+
+			if (option && typeof option === "object") {
+				myChart6.clear();
+				myChart6.resize();
+				myChart6.setOption(option,true);
+			};
+			
+			//******************************************************************************************************
+			// 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+
+            // 指定图表的配置项和数据
+            option = {
+                backgroundColor: '#000',
+                tooltip: {
+                    formatter: "{a} <br/>{c} {b}"
+                },
+				title: {
+					text: '',
+					left: '300px',
+					textStyle:{//标题内容的样式
+						color:'#EAEAEA',//京东红
+						fontStyle:'normal',//主标题文字字体风格，默认normal，有italic(斜体),oblique(斜体)
+						fontWeight:"lighter",//可选normal(正常)，bold(加粗)，bolder(加粗)，lighter(变细)，100|200|300|400|500...
+						fontFamily:"san-serif",//主题文字字体，默认微软雅黑
+						fontSize:28//主题文字字体大小，默认为18px
+					}
+				},
+                toolbox: {
+                    show: true,
+                    feature: {
+                        mark: {
+                            show: false
+                        },
+                        restore: {
+                            show: false
+                        },
+                        saveAsImage: {
+                            show: false
+                        }
+                    }
+                },
+                series: [{
+                    name: '饱和度',
+                    type: 'gauge',
+					center: ['48.5%', '45%'],  
+                    min: 0,
+                    max: 100,
+                    splitNumber: 10,
+                    radius: '80%',
+                    axisLine: { // 坐标轴线
+                        lineStyle: { // 属性lineStyle控制线条样式
+                            color: [
+                                [0.09, 'lime'],
+                                [0.82, '#1e90ff'],
+                                [1, '#ff4500']
+                            ],
+                            width: 3,
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    axisLabel: { // 坐标轴小标记
+                        textStyle: { // 属性lineStyle控制线条样式
+                            fontWeight: 'bolder',
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    axisTick: { // 坐标轴小标记
+                        length: 15, // 属性length控制线长
+                        lineStyle: { // 属性lineStyle控制线条样式
+                            color: 'auto',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    splitLine: { // 分隔线
+                        length: 25, // 属性length控制线长
+                        lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
+                            width: 3,
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    pointer: { // 分隔线
+                        shadowColor: '#fff', //默认透明
+                        shadowBlur: 5
+                    },
+                    title: {
+						offsetCenter: [0, '90%'], // x, y，单位px
+                        textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            fontSize: 20,
+                            fontStyle: 'italic',
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    detail: {
+                        backgroundColor: '#444',
+                        borderWidth: 1,
+                        borderColor: '#fff',
+                        shadowColor: '#fff', //默认透明
+                        shadowBlur: 5,
+                        offsetCenter: [0, '50%'], // x, y，单位px
+                        textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            color: '#fff'
+                        }
+                    },
+                    data: [{
+                        value: 38,
+                        name: '资源饱和度'
+                    }]
+                }, 
+                {
+                    name: '营销价值',
+                    type: 'gauge',
+                    center: ['15%', '55%'], // 默认全局居中
+                    radius: '60%',
+                    min: 0,
+                    max: 100,
+                    endAngle: -40,
+                    splitNumber: 10,
+                    axisLine: { // 坐标轴线
+                        lineStyle: { // 属性lineStyle控制线条样式
+                            color: [
+                                [0.29, 'lime'],
+                                [0.86, '#1e90ff'],
+                                [1, '#ff4500']
+                            ],
+                            width: 2,
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    axisLabel: { // 坐标轴小标记
+                        textStyle: { // 属性lineStyle控制线条样式
+                            fontWeight: 'bolder',
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    axisTick: { // 坐标轴小标记
+                        length: 12, // 属性length控制线长
+                        lineStyle: { // 属性lineStyle控制线条样式
+                            color: 'auto',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    splitLine: { // 分隔线
+                        length: 20, // 属性length控制线长
+                        lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
+                            width: 3,
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    pointer: {
+                        width: 5,
+                        shadowColor: '#fff', //默认透明
+                        shadowBlur: 5
+                    },
+                    title: {
+                        offsetCenter: [0, '80%'], // x, y，单位px
+                        textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            fontStyle: 'italic',
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    detail: {
+                        //backgroundColor: 'rgba(30,144,255,0.8)',
+                        // borderWidth: 1,
+                        borderColor: '#fff',
+                        shadowColor: '#fff', //默认透明
+                        shadowBlur: 5,
+                        width: 80,
+                        height: 30,
+                        offsetCenter: [5, '60%'], // x, y，单位px
+                        textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            color: '#fff'
+                        }
+                    },
+                    data: [{
+                        value: 10,
+                        name: '执行进度'
+                    }]
+                }, 
+                {
+                    name: '剩余资源',
+                    type: 'gauge',
+                    center: ['82%', '55%'], // 默认全局居中
+                    radius: '60%',
+                    min: 0,
+                    max: 200,
+                    endAngle: -40,
+                    splitNumber: 10,
+                    axisLine: { // 坐标轴线
+                        lineStyle: { // 属性lineStyle控制线条样式
+                            color: [
+                                [0.29, 'lime'],
+                                [0.86, '#1e90ff'],
+                                [1, '#ff4500']
+                            ],
+                            width: 2,
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    axisLabel: { // 坐标轴小标记
+                        textStyle: { // 属性lineStyle控制线条样式
+                            fontWeight: 'bolder',
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    axisTick: { // 坐标轴小标记
+                        length: 12, // 属性length控制线长
+                        lineStyle: { // 属性lineStyle控制线条样式
+                            color: 'auto',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    splitLine: { // 分隔线
+                        length: 20, // 属性length控制线长
+                        lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
+                            width: 3,
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    pointer: {
+                        width: 5,
+                        shadowColor: '#fff', //默认透明
+                        shadowBlur: 5
+                    },
+                    title: {
+                        offsetCenter: [0, '80%'], // x, y，单位px
+                        textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            fontStyle: 'italic',
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    detail: {
+                        //backgroundColor: 'rgba(30,144,255,0.8)',
+                        // borderWidth: 1,
+                        borderColor: '#fff',
+                        shadowColor: '#fff', //默认透明
+                        shadowBlur: 5,
+                        width: 80,
+                        height: 30,
+                        offsetCenter: [5, '60%'], // x, y，单位px
+                        textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            color: '#fff'
+                        }
+                    },
+                    data: [{
+                        value: 100,
+                        name: '剩余资源'
+                    }]
+                }]
+            };
+            
+            myChart.setOption(option);
+			setInterval(function() {
+                option.series[0].data[0].value = (Math.random() * 40).toFixed(2) - 0;
+                //option.series[1].data[0].value = (Math.random() * 47).toFixed(2) - 0;
+				option.series[1].data[0].value = option.series[1].data[0].value+(Math.random()*5);
+                option.series[2].data[0].value = (Math.random() * 200).toFixed(2) - 0;
+                //option.series[3].data[0].value = (Math.random() * 2).toFixed(2) - 0;
+                myChart.setOption(option);
+            }, 2000)
+			
+			var dom = document.getElementById("mainMonth");
+			var myChartMonth = echarts.init(dom);
+			var app = {};
+			optionMonth = null;
+			optionMonth = {
+				title: {
+					text: '价值排名',
+					textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            fontSize: 20,
+                            fontStyle: 'italic',
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        },
+					subtext: ''
+				},
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: {
+						type: 'shadow'
+					}
+				},
+				legend: {
+					data: ['上月', '本月'],
+					textStyle:{//图例文字的样式
+						color:'#fff'
+					}
+				},
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					containLabel: true
+				},
+				xAxis: {
+					type: 'value',
+					textStyle: { // 属性lineStyle控制线条样式
+                            fontWeight: 'bolder',
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        },
+					boundaryGap: [0, 0.01],
+					axisLine:{
+                        lineStyle:{
+                            color:'#FFF'
+                        }
+                    } 
+				},
+				yAxis: {
+					type: 'category',
+					data: ['CCTV-1','CCTV-2','CCTV-7','旅游卫视','中国天气网'],
+					axisLine:{
+                        lineStyle:{
+                            color:'#FFF'
+                        }
+                    } 
+				},
+				series: [
+					{
+						name: '上月',
+						type: 'bar',
+						data: [18203, 23489, 29034, 104970, 131744]
+					},
+					{
+						name: '本月',
+						type: 'bar',
+						data: [19325, 23438, 31000, 121594, 134141]
+					}
+				]
+			};
+			if (optionMonth && typeof optionMonth === "object") {
+				myChartMonth.clear();
+				myChartMonth.resize();
+				myChartMonth.setOption(optionMonth,true);
+			};
+
+            var dom = document.getElementById("main12");
+			var myChart12 = echarts.init(dom);
+			var app = {};
+			app.title = '';
+			optionMonth = null;
+			optionMonth = {
+				backgroundColor: '#000',
+				title: {
+					text: '受众兴趣爱好',
+					show : false ,
+					x:'center',
+					textStyle:{//标题内容的样式
+						color:'#EAEAEA',//京东红
+						fontStyle:'normal',//主标题文字字体风格，默认normal，有italic(斜体),oblique(斜体)
+						fontWeight:"lighter",//可选normal(正常)，bold(加粗)，bolder(加粗)，lighter(变细)，100|200|300|400|500...
+						fontFamily:"san-serif",//主题文字字体，默认微软雅黑
+						fontSize:28//主题文字字体大小，默认为18px
+					}
+				},
+				series: [{
+					type: 'treemap',
+					data: [{
+						name: '即将到期',            // Second tree
+						value: 20,
+						children: [{
+							name: '字幕条',       // Son of first tree
+							value: 20
+						},{
+							name: '西安',       // Son of first tree
+							value: 20
+						},{
+							name: '南京',       // Son of first tree
+							value: 20
+						},{
+							name: '上海',       // Son of first tree
+							value: 20
+						},{
+							name: '北京（首）',       // Son of first tree
+							value: 20
+						},{
+							name: '天津',       // Son of first tree
+							value: 20
+						}]
+					}, {
+						name: '未售卖',            // Second tree
+						value: 20,
+						children: [{
+							name: '拉萨',       // Son of first tree
+							value: 20
+						},{
+							name: '预警信息冠名',       // Son of first tree
+							value: 20
+						},{
+							name: '南宁',       // Son of first tree
+							value: 20
+						},{
+							name: '乌鲁木齐',       // Son of first tree
+							value: 20
+						}]
+					},{
+						name: '满档资源',            // Second tree
+						value: 20,
+						children: [{
+							name: '栏目冠名',       // Son of first tree
+							value: 20
+						},{
+							name: '三通版无声硬广',       // Son of first tree
+							value: 20
+						},{
+							name: 'CCTV-7片尾30秒',       // Son of first tree
+							value: 20
+						},{
+							name: '天气在变化',       // Son of first tree
+							value: 20
+						}]
+					}]
+				}]
+			};
+			;
+			if (optionMonth && typeof optionMonth === "object") {
+				myChart12.clear();
+				myChart12.resize();
+				myChart12.setOption(optionMonth,true);
+			};
+			
+			var dom = document.getElementById("mainQs");
+			var myChartQs = echarts.init(dom);
+			var app = {};
+			app.title = '';
+			optionQs = null;
+			optionQs = {
+			title: {
+				text: '历年销售趋势',
+				textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            fontSize: 20,
+                            fontStyle: 'italic',
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        },
+			},
+			tooltip: {
+				trigger: 'axis'
+			},
+			legend: {
+				data:['2016','2017','2018'],
+				textStyle:{//图例文字的样式
+						color:'#fff'
+					}
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			toolbox: {
+				feature: {
+					saveAsImage: {}
+				}
+			},
+			xAxis: {
+				type: 'category',
+				boundaryGap: false,
+				data: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+				axisLine:{
+                        lineStyle:{
+                            color:'#FFF'
+                        }
+                    } 
+			},
+			yAxis: {
+				type: 'value',
+				axisLine:{
+                        lineStyle:{
+                            color:'#FFF'
+                        }
+                    } 
+			},
+			series: [
+				{
+					name:'2016',
+					type:'line',
+					//stack: '总量',
+					data:[120, 132, 101, 134, 90, 230, 210,342,265,124,42,332]
+				},
+				{
+					name:'2017',
+					type:'line',
+					//stack: '总量',
+					data:[220, 182, 191, 234, 290, 330, 310,253,235,111,223,23]
+				},
+				{
+					name:'2018',
+					type:'line',
+					stack: '总量',
+					data:[150, 232, 201, 154, 190, 330, 410,320, 432, 501]
+				}
+			]
+		};
+			if (optionQs && typeof optionQs === "object") {
+				myChartQs.clear();
+				myChartQs.resize();
+				myChartQs.setOption(optionQs,true);
+			};
+			
+			
+			//Month
+			var myChartMonth = echarts.init(document.getElementById("mainMonth"));
+			var app = {};
+			var dataMap = {};
+function dataFormatter(obj) {
+    var pList = ['电视','电台','网站','WAP'];
+    var temp;
+    for (var year = 1; year <= 10; year++) {
+        var max = 0;
+        var sum = 0;
+        temp = obj[year];
+        for (var i = 0, l = temp.length; i < l; i++) {
+            max = Math.max(max, temp[i]);
+            sum += temp[i];
+            obj[year][i] = {
+                name : pList[i],
+                value : temp[i]
+            }
+        }
+        obj[year + 'max'] = Math.floor(max / 100) * 100;
+        obj[year + 'sum'] = sum;
+    }
+    return obj;
+}
+
+dataMap.data收益 = dataFormatter({
+    //max : 60000,
+    10:[1625,1130,2451,1123],
+    9:[1411,922,2039,920],
+    8:[1215,752,1723,735],
+    7:[1111,671,1601,731],
+    6:[984,525,1360,602],
+    5:[811,446,1146,487],
+    4:[696,390,1001,423],
+    3:[603,311,477.63,571.37],
+    2:[507.21,578.03,921.29,855.23],
+    1:[315,150.76,618.28,324.8]
+});
+
+dataMap.dataPI = dataFormatter({
+    //max : 4000,
+    10:[36.27,59.72,905.73,41.42],
+    9:[24.36,45.58,562.81,54.48],
+    8:[18.29,28.85,207.34,77.59],
+    7:[12.83,22.58,204.59,13.58],
+    6:[11.26,10.19,804.72,11.97],
+    5:[8.8,13.35,461.81,76.77],
+    4:[8.68,12.38,400,62.42],
+    3:[7.36,15.28,370.43,76.3],
+    2:[4.11,9.91,164.05,15.19],
+    1:[2.44,4.21,56.84,97.8]
+});
+
+dataMap.dataSI = dataFormatter({
+    //max : 26600,
+    10:[752.48,928.32,3126.86,635.26],
+    9:[388.38,840.23,1707.68,234],
+    8:[855.55,987.84,959.83,993.8],
+    7:[626.41,709.78,701.34,242.36],
+    6:[509.4,892.53,201.88,454.49],
+    5:[191.43,457.08,110.43,755.66],
+    4:[226.51,135.07,271.57,357.04],
+    3:[853.58,685.93,301.73,919.4],
+    2:[487.15,337.31,417.56,463.38],
+    1:[249.99,169.08,911.69,134.31]
+});
+
+dataMap.dataTI = dataFormatter({
+    //max : 25000,
+    10:[2363.18,219.24,483.17,960.87],
+    9:[1600.84,238.65,123.77,412.38],
+    8:[179.19,405.16,668.31,886.92],
+    7:[375.76,886.65,276.04,759.46],
+    6:[236.15,250.04,600.72,257.99],
+    5:[837.55,902.31,895.36,846.18],
+    4:[854.33,658.19,340.54,611.07],
+    3:[492.27,319.76,805.47,375.67],
+    2:[435.95,150.81,439.68,176.65],
+    1:[982.57,97.47,149.75,92.69]
+});
+
+dataMap.dataEstate = dataFormatter({
+    //max : 3600,
+    10:[174.93,11.46,18.02,24.91],
+    9:[106.52,77.59,97.79,92],
+    8:[102.47,38.73,12.4,73.31],
+    7:[44.59,27.88,13.81,66.04],
+    6:[21.5,83.44,67.97,34.12],
+    5:[58.3,56.64,97.14,17.01],
+    4:[93.73,22.67,30.87,16],
+    3:[46.11,16.14,21.08,9.1],
+    2:[31.88,9.31,18.19,7.73],
+    1:[28.02,7.04,10.89,6.83]
+});
+
+dataMap.dataFinancial = dataFormatter({
+    //max : 3200,
+    10:[215.41,76.5,76.01,59.32],
+    9:[163.61,52.99,65.42,48.3],
+    8:[103.63,41.2,55.67,31.64],
+    7:[119.19,38.1,40.74,20.91],
+    6:[102.77,28.17,37.65,28.73],
+    5:[92.37,16.87,24.04,19.63],
+    4:[80.2,17.4,23.47,15.07],
+    3:[73.79,16.97,29.1,10.29],
+    2:[65.56,12.79,19.87,18.48],
+    1:[51.91,7.86,19.6,14.1]
+});
+
+
+optionMonth = {
+    baseOption: {
+        timeline: {
+            // y: 0,
+            axisType: 'category',
+            // realtime: false,
+            // loop: false,
+            autoPlay: true,
+            // currentIndex: 2,
+            playInterval: 1000,
+            // controlStyle: {
+            //     position: 'left'
+            // },
+            data: [
+                '2018-01-01','2018-02-01','2018-03-01',
+                {
+                    value: '2018-04-01',
+                    tooltip: {
+                        formatter: '{b} 收益达到一个高度'
+                    },
+                    symbol: 'diamond',
+                    symbolSize: 16
+                },
+                '2018-05-01', '2018-06-01','2018-07-01','2018-08-01','2018-09-01',
+                {
+                    value: '2018-10-01',
+                    tooltip: {
+                        formatter: function (params) {
+                            return params.name + '收益达到又一个高度';
+                        }
+                    },
+                    symbol: 'diamond',
+                    symbolSize: 18
+                },
+            ],
+            label: {
+                formatter : function(s) {
+                    return (new Date(s)).getMonth()+1;
+                }
+            }
+        },
+        title: {
+            subtext: '',
+			textStyle:{//图例文字的样式
+						color:'#fff'
+					}
+        },
+        tooltip: {
+        },
+        legend: {
+            x: 'right',
+            data: ['成本', '收益'],
+			textStyle:{//图例文字的样式
+						color:'#fff'
+					}
+            /*selected: {
+                '收益': false, '文字': false, '其他': false
+            }*/
+        },
+        calculable : true,
+        grid: {
+            top: 80,
+            bottom: 100,
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                }
+            }
+        },
+        xAxis: [
+            {
+                'type':'category',
+                'axisLabel':{'interval':0},
+                'data':[
+                    '电视','\n电台','网站','\nWAP'
+                ],
+				axisLine:{
+                        lineStyle:{
+                            color:'#FFF'
+                        }
+                    } ,
+                splitLine: {show: false}
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+				axisLine:{
+                        lineStyle:{
+                            color:'#FFF'
+                        }
+                    } ,
+                name: '金额（万元）'
+            }
+        ],
+        series: [
+            {name: '收益', type: 'bar'},
+
+            {name: '成本', type: 'bar'},
+            {
+                name: '收益占比',
+                type: 'pie',
+                center: ['75%', '35%'],
+                radius: '28%',
+                z: 100
+            }
+        ]
+    },
+    options: [
+        {
+            title: {text: '1月各媒介收支情况'},
+            series: [
+                {data: dataMap.data收益['1']},
+
+                {data: dataMap.dataTI['1']}
+            ]
+        },
+        {
+            title : {text: '2月各媒介收支情况'},
+            series : [
+                {data: dataMap.data收益['2']},
+
+                {data: dataMap.dataTI['2']}
+            ]
+        },
+        {
+            title : {text: '3月各媒介收支情况'},
+            series : [
+                {data: dataMap.data收益['3']},
+
+                {data: dataMap.dataTI['3']}
+            ]
+        },
+        {
+            title : {text: '4月各媒介收支情况'},
+            series : [
+                {data: dataMap.data收益['4']},
+
+                {data: dataMap.dataTI['4']}
+            ]
+        },
+        {
+            title : {text: '5月各媒介收支情况'},
+            series : [
+                {data: dataMap.data收益['5']},
+
+                {data: dataMap.dataTI['5']}
+            ]
+        },
+        {
+            title : {text: '6月各媒介收支情况'},
+            series : [
+                {data: dataMap.data收益['6']},
+
+                {data: dataMap.dataTI['6']}
+            ]
+        },
+        {
+            title : {text: '7月各媒介收支情况'},
+            series : [
+                {data: dataMap.data收益['7']},
+
+                {data: dataMap.dataTI['7']}
+            ]
+        },
+        {
+            title : {text: '8月各媒介收支情况'},
+            series : [
+                {data: dataMap.data收益['8']},
+
+                {data: dataMap.dataTI['8']}
+            ]
+        },
+        {
+            title : {text: '9月各媒介收支情况'},
+            series : [
+                {data: dataMap.data收益['9']},
+
+                {data: dataMap.dataTI['9']}
+            ]
+        },
+        {
+            title : {text: '10月各媒介收支情况'},
+            series : [
+                {data: dataMap.data收益['10']},
+
+                {data: dataMap.dataTI['10']}
+            ]
+        }
+    ]
+};
+			if (optionMonth && typeof optionMonth === "object") {
+				myChartMonth.clear();
+				myChartMonth.resize();
+				myChartMonth.setOption(optionMonth,true);
+			};
+			
+			
+			var myChartQuarter = echarts.init(document.getElementById("mainQuarter"));
+			var app = {};
+			app.title = '堆叠条形图';
+
+
+			optionQuarter = {
+				tooltip : {
+					trigger: 'axis',
+					axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+						type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				legend: {
+					data:['电台收入','网站收入','WAP收入','电视收入','电台成本','网站成本','WAP成本','电视成本','CCTV-1','CCTV-2','CCTV-7','CCTV-13','其他']
+				},
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					containLabel: true
+				},
+				xAxis : [
+					{
+						type : 'category',
+						data : ['第一季度','第二季度','第三季度','第四季度']
+					}
+				],
+				yAxis : [
+					{
+						type : 'value'
+					}
+				],
+				series : [
+					{
+						name:'电台成本',
+						type:'bar',
+						stack: '电台',
+						data:[20, 32, 31, 34]
+					},{
+						name:'电台收入',
+						type:'bar',
+						stack: '电台',
+						data:[320, 332, 301, 334]
+					},
+					
+					{
+						name:'网站成本',
+						type:'bar',
+						stack: '网站',
+						data:[20, 32, 11, 34]
+					},{
+						name:'网站收入',
+						type:'bar',
+						stack: '网站',
+						data:[120, 132, 101, 134]
+					},
+					
+					{
+						name:'WAP成本',
+						type:'bar',
+						stack: 'WAP',
+						data:[20, 82, 91, 34]
+					},{
+						name:'WAP收入',
+						type:'bar',
+						stack: 'WAP',
+						data:[220, 182, 191, 234]
+					},
+					
+					{
+						name:'电视成本',
+						type:'bar',
+						stack: '电视',
+						data:[37, 114, 107, 114],
+						markLine : {
+							lineStyle: {
+								normal: {
+									type: 'dashed'
+								}
+							},
+							data : [
+								[{type : 'min'}, {type : 'max'}]
+							]
+						}
+					},{
+						name:'电视收入',
+						type:'bar',
+						stack: '电视',
+						data:[937, 1114, 1037, 1114],
+						markLine : {
+							lineStyle: {
+								normal: {
+									type: 'dashed'
+								}
+							},
+							data : [
+								[{type : 'min'}, {type : 'max'}]
+							]
+						}
+					}
+					
+					
+				]
+			};
+
+
+			if (optionQuarter && typeof optionQuarter === "object") {
+				myChartQuarter.clear();
+				myChartQuarter.resize();
+				myChartQuarter.setOption(optionQuarter,true);
+			};
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>

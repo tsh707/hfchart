@@ -1,0 +1,649 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<script type="text/javascript" src="http://39.106.111.104:86/PV/NCCPVH.ashx?adid=1&netid=1&nf=screen"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+
+    <body style="background-color:#000000">
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+		<!--div class="divCenter">福建省广告市场健康度一览</div-->
+		<table>
+			<tr>
+				<td colspan=2 align="center"><h1 style="background-color:#000;margin-top:-1px;margin-bottom:-1px;color:#FFF">华风集团媒体资源可视化平台</h1></td>
+			</tr>
+			
+			<tr>
+				<td >
+					<div id="mainAll" style="width:660px;height:270px;margin-top: 10px;align:left"></div>				
+				</td>	
+				<td>
+					<table>
+						<tr>
+							<td><div id="mainIncoming" style="width:330px;height:270px;margin-top: 0px;align:left"></div></td>
+							<td><div id="mainMTrend" style="width:330px;height:270px;margin-top: 0px;align:top">bb</div></td>														
+						</tr>
+					</table>
+				</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td >
+					<table><tr>
+						<td><div id="mainFullRate" style="width: 330px;height:250px;margin-top: -20px;align:top"></div></td>
+						<td align="top"><div id="mainByYear" style="width:330px;height:270px;margin-top: 0px;align:left"></div></td>
+					</tr></table>
+				</td>
+				<td><div id="mainSourceType" style="width:660px;height:270px;margin-top: 0px;align:left">aa</div></td>
+			</tr>
+			<tr>
+				<td  style="background-color:#000;margin-top:-1px;margin-bottom:-1px;color:#D52B2B">即将到期资源：北京首、哈尔滨、南京、福州</td>
+				<td  style="background-color:#000;margin-top:-1px;margin-bottom:-1px;color:#D52B2B">Top5未售资源：乌鲁木齐、西宁、兰州、拉萨、贵州</td>
+			</tr>
+		</table>
+        
+		
+        <script type="text/javascript">
+			var myChartIncoming = echarts.init(document.getElementById("mainIncoming"));
+			optionIncoming = {
+				title : {
+					text: '当月各部分资源收入占比',
+					textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            fontSize: 20,
+                            fontStyle: 'italic',
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        },
+					subtext: '',
+					x:'left'
+				},
+				tooltip : {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					x:'center',
+					y : 'bottom',
+					data:['联播','承包','自营资源','自营'],
+					textStyle:{//图例文字的样式
+						color:'#fff'
+					}
+				},
+				calculable : true,
+				series : [
+					{
+						radius: '65%',
+						name:'媒介',
+						type:'pie',
+						data:[
+							{value:39.18, name:'联播'},
+							{value:7.55, name:'承包'},
+							{value:21.07, name:'自营资源'},
+							{value:2.19, name:'自营'}
+						]
+					}
+				]
+			};
+			
+			if (optionIncoming && typeof optionIncoming === "object") {
+				myChartIncoming.clear();
+				myChartIncoming.resize();
+				myChartIncoming.setOption(optionIncoming,true);
+			};
+			
+			
+            var dom = document.getElementById("mainFullRate");
+			var myChart6 = echarts.init(dom);
+			var app = {};
+			option = null;			
+			option = {
+				title: {
+					text: '当月资源饱和情况',
+					textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            fontSize: 20,
+                            fontStyle: 'italic',
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        },
+					subtext: ''
+				},
+				tooltip: {
+					trigger: 'axis'
+				},				
+				radar: [
+					{
+						indicator: [
+							{text: 'CCTV-1', max: 100},
+							{text: 'CCTV-2', max: 100},
+							{text: 'CCTV-7', max: 100},
+							{text: 'CCTV-13', max: 100},
+							{text: '教育台', max: 100},
+							{text: '旅游卫视', max: 100}
+						],
+						center: ['45%','55%'],
+						radius: 80
+					}
+				],
+				series: [
+					{
+						type: 'radar',
+						 tooltip: {
+							trigger: 'item'
+						},
+						itemStyle: {normal: {areaStyle: {type: 'default'}}},
+						data: [
+							{
+								value: [60,73,85,40,77,56],
+								name: '1月'
+							}
+						]
+					},					
+					{
+						type: 'radar',
+						radarIndex: 1,
+						itemStyle: {normal: {areaStyle: {type: 'default'}}},
+						data: [
+							{
+								name: '1月',
+								value: [42.6, 25.9, 69.0, 76.4],
+							}/*,
+							{
+								name:'2月',
+								value:[32.0, 54.9, 87.0, 23.2]
+							},
+							{
+								name:'3月',
+								value:[75.6, 82.2, 48.7,56.3]
+							}*/
+						]
+					}
+				]
+			};
+
+			if (option && typeof option === "object") {
+				myChart6.clear();
+				myChart6.resize();
+				myChart6.setOption(option,true);
+			};
+
+           			
+			var myChartSourceType = echarts.init(document.getElementById("mainSourceType"));
+			var app = {};
+			app.title = '';
+			optionSourceType = null;
+			optionSourceType = {
+			title: {
+				text: '资源收入分布对比图',
+				textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            fontSize: 20,
+                            fontStyle: 'italic',
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        },
+			},
+
+				legend: {
+					y: 'bottom',
+					data:['2017年','2018年'],
+					textStyle:{//图例文字的样式
+						color:'#fff'
+					}
+				},
+				xAxis: [
+					{
+						type: 'category',
+						axisLine: {onZero: true},
+						data:['联播','承包','自营资源','其他'],
+						axisPointer: {
+							type: 'shadow'
+						},
+						axisLine:{
+								lineStyle:{
+									color:'#FFF'
+								}
+						}
+					}
+				],
+				yAxis : [
+					{
+						type : 'value',
+						name: '金额(百万)',
+						axisLine:{
+								lineStyle:{
+									color:'#FFF'
+								}
+						}
+					}
+				],
+				series: [
+					{
+						name:'2017年',
+						type:'bar',
+						data:[260,50,205,20]
+					},
+					{
+						name:'2018年',
+						type:'bar',
+						data:[125,42,220,8],
+						markPoint : {
+							data : [
+								{name : '同比下降', value : 38, xAxis: 0, yAxis: 125},
+								{name : '同比下降', value : 26, xAxis: 1, yAxis: 50},
+								{name : '同比上涨', value : 1, xAxis: 2, yAxis: 220},
+								{name : '同比下降', value : 69, xAxis: 3, yAxis: 20}
+							],
+							itemStyle : {
+								normal: {	
+									label : {
+										show: true, 
+										position: 'inside',
+										formatter: "{b} : {c}%"
+									}
+								}
+							}
+						},
+					}
+				]
+			};
+			if (optionSourceType && typeof optionSourceType === "object") {
+				myChartSourceType.clear();
+				myChartSourceType.resize();
+				myChartSourceType.setOption(optionSourceType,true);
+			};
+			
+			var myChartByYear = echarts.init(document.getElementById("mainByYear"));
+			var app = {};
+			app.title = '';
+			optionByYear = null;
+			var xAxisData = [2014,2015,2016,2017,2018];
+			var data = [60,71,53,43,72];
+			
+			optionByYear = {
+				title: {
+					text: '近五年占版率',
+					textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            fontSize: 20,
+                            fontStyle: 'italic',
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+				},
+				xAxis: [{
+					data: xAxisData.map(function(x){
+						if(x == "5月11日")return " ";
+						return x;
+					}),
+					axisLabel: {
+						textStyle: {
+							color: '#fff'
+						}
+					},
+					splitLine: {
+						show: false
+					}
+				}, {
+					// 辅助 x 轴
+					show: false,
+					data: xAxisData.map(function(x){
+						if(x == "5月11日")return " ";
+						return x;
+					})
+				}],
+				yAxis: {
+					max: 100,
+					axisLine: {
+						show: false,
+						lineStyle:{
+									color:'#FFF'
+								}
+					}
+				},
+				series: [
+					{
+						// 辅助系列
+						type           : 'bar',
+						silent         : true,
+						xAxisIndex     : 1,
+						itemStyle      : {
+							normal         : {
+								barBorderRadius: 20,
+								color          : '#ddd'      
+							}
+						},
+						barWidth: 20,
+						data: data.map(function (val) {
+								return 100;
+							})
+					},
+					{
+						type: 'bar',
+						data: data,
+						barWidth: 20,
+						itemStyle: {
+							normal: {
+								barBorderRadius: [20, 20, 0, 0],
+								label : {show: true, position: 'inside',formatter:'{c}%'}
+							}
+						}
+					}
+				]
+			};
+			if (optionByYear && typeof optionByYear === "object") {
+				myChartByYear.clear();
+				myChartByYear.resize();
+				myChartByYear.setOption(optionByYear,true);
+			};
+			
+			
+			//
+			var chartAll = echarts.init(document.getElementById('mainAll'));
+			var labelAllTop = {//上层样式
+				normal : {
+					color :'#0099cc',
+					label : {
+						show : true,
+						position : 'center',
+						formatter : '{b}',
+						textStyle: {
+							baseline : 'bottom',
+							fontSize:22
+						}
+					},
+					labelLine : {
+						show : false
+					}
+				}
+			};
+			var labelSubTop = {//上层样式
+				normal : {
+					color :'#0099ff',
+					label : {
+						show : true,
+						position : 'center',
+						formatter : '{b}',
+						textStyle: {
+							baseline : 'bottom',
+							fontSize:13
+						}
+					},
+					labelLine : {
+						show : false
+					}
+				}
+			};
+			
+			var labelFromatter = {//环内样式
+				normal : {//默认样式
+					label : {//标签
+						formatter : function (a,b,c){return 100 - c + '%'},
+						// labelLine.length：30,  //线长，从外边缘起计算，可为负值
+						textStyle: {//标签文本样式
+							color:'black',
+							align :'center',
+							baseline : 'top'//垂直对其方式
+						}
+					}
+				},
+			};
+			var labelBottom = {//底层样式
+				normal : {
+					color: '#99ccff',
+					label : {
+						show : true,
+						position : 'center',
+						fontSize:22
+					},
+					labelLine : {
+						show : false
+					}
+				},
+				emphasis: {//悬浮式样式
+					color: 'rgba( 0,0,0,0)'
+				}
+			};
+
+			var optionAll = {
+				title : {
+					text: '销售进度',
+					subtext: '',
+					textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            fontSize: 20,
+                            fontStyle: 'italic',
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        },
+					x:'left'/*,
+					//正标题样式
+					textStyle: {
+						fontSize:44,
+						fontFamily:'Arial',
+						fontWeight:100,
+						//color:'#1a4eb0',
+					},
+					//副标题样式
+					subtextStyle: {
+						fontSize:28,
+						fontFamily:'Arial',
+						color:"#1a4eb0",
+					},*/
+				},
+				animation:false,
+				tooltip : {         // 提示框. Can be overwrited by series or data
+					trigger: 'axis',
+					//show: true,   //default true
+					showDelay: 0,
+					hideDelay: 50,
+					transitionDuration:0,
+					borderRadius : 8,
+					borderWidth: 2,
+					padding: 10,    // [5, 10, 15, 20]
+				},
+				series : [
+					{
+						type : 'pie',
+						center : ['45%', '50%'],//圆心坐标（div中的%比例）
+						radius : [60,111],// 半径[内半径，外半径]
+						x: '0%', // for funnel
+						itemStyle : labelAllTop,//graphStyleA,//图形样式 // 当查到的数据不存在（并非为0），此属性隐藏
+						data : [
+							{name:'总体完成率', value:79,itemStyle : labelAllTop},
+							{name:'79%', value:21, itemStyle : labelBottom}
+						]
+					},
+					{
+						type : 'pie',
+						center : ['15%', '28%'],//圆心坐标（div中的%比例）
+						radius : [40,61],// 半径[内半径，外半径]
+						x: '0%', // for funnel
+						itemStyle : labelSubTop,//graphStyleA,//图形样式 // 当查到的数据不存在（并非为0），此属性隐藏
+						data : [
+							{name:'A组完成率', value:66,itemStyle : labelSubTop},
+							{name:'66%', value:34, itemStyle : labelBottom}
+						]
+					},
+					{
+						type : 'pie',
+						center : ['76%', '28%'],//圆心坐标（div中的%比例）
+						radius : [40,61],// 半径[内半径，外半径]
+						x: '0%', // for funnel
+						itemStyle : labelSubTop,//graphStyleA,//图形样式 // 当查到的数据不存在（并非为0），此属性隐藏
+						data : [
+							{name:'B组完成率', value:70,itemStyle : labelSubTop},
+							{name:'70%', value:30, itemStyle : labelBottom}
+						]
+					},
+					{
+						type : 'pie',
+						center : ['15%', '77%'],//圆心坐标（div中的%比例）
+						radius : [40,61],// 半径[内半径，外半径]
+						x: '0%', // for funnel
+						itemStyle : labelSubTop,//graphStyleA,//图形样式 // 当查到的数据不存在（并非为0），此属性隐藏
+						data : [
+							{name:'C组完成率', value:85,itemStyle : labelSubTop},
+							{name:'85%', value:15, itemStyle : labelBottom}
+						]
+					},
+					{
+						type : 'pie',
+						center : ['76%', '77%'],//圆心坐标（div中的%比例）
+						radius : [40,61],// 半径[内半径，外半径]
+						x: '0%', // for funnel
+						itemStyle : labelSubTop,//graphStyleA,//图形样式 // 当查到的数据不存在（并非为0），此属性隐藏
+						data : [
+							{name:'D组完成率', value:80,itemStyle : labelSubTop},
+							{name:'80%', value:20, itemStyle : labelBottom}
+						]
+					}
+				]
+			};
+			chartAll.setOption(optionAll);
+			
+			
+			//
+			var myChartMTrend = echarts.init(document.getElementById("mainMTrend"));
+			var app = {};
+			app.title = '堆叠条形图';
+
+
+			optionMTrend = {
+				title: {
+					text: '月度销售额变化趋势',
+					textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            fontSize: 20,
+                            fontStyle: 'italic',
+                            color: '#fff',
+                            shadowColor: '#fff', //默认透明
+                            shadowBlur: 10
+                        },
+					//x:'center',
+					subtext: ''
+				},
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: {
+						type: 'cross',
+						crossStyle: {
+							color: '#999'
+						}
+					}
+				},
+				
+				legend: {
+					y: 'bottom',
+					data:['销售额','同比增长率','环比增长率'],
+					textStyle:{//图例文字的样式
+						color:'#fff'
+					}
+				},
+				xAxis: [
+					{
+						type: 'category',
+						//axisLine: {onZero: true},
+						data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+						axisPointer: {
+							type: 'shadow'
+						},
+						axisLine:{
+								lineStyle:{
+									color:'#FFF'
+								}
+							}
+					}
+				],
+				yAxis: [
+					{
+						type: 'value',
+						name: '销售额(百万)',
+						min: 0,
+						max: 250,
+						interval: 50,
+						axisLabel: {
+							formatter: '{value} '
+						},
+						axisLine:{
+								lineStyle:{
+									color:'#FFF'
+								}
+							}
+					},
+					{
+						type: 'value',
+						name: '增长率',
+						min: -100,
+						max: 200,
+						interval: 50,
+						axisLabel: {
+							formatter: '{value} %'
+						},
+						axisLine:{
+								lineStyle:{
+									color:'#FFF'
+								}
+							}
+					}
+				],
+				series: [
+					{
+						name:'销售额',
+						type:'bar',
+						data:[2.0, 3.9, 7.0, 16.7, 25.6, 70.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+						axisLine: { // 坐标轴线
+							lineStyle: { // 属性lineStyle控制线条样式
+								color: [
+									[0.29, 'lime'],
+									[0.86, '#1e90ff'],
+									[1, '#ff4500']
+								],
+								width: 2,
+								shadowColor: '#fff', //默认透明
+								shadowBlur: 10
+							}
+						},
+					},
+					{
+						name:'同比增长率',
+						type:'line',
+						yAxisIndex: 1,
+						data:[-10.00,-10.26,-14.29,-10.18,-10.16,0.42,-18.88,-16.77,53.37,15.00,9.37,21.21]
+					},
+					{
+						name:'环比增长率',
+						type:'line',
+						yAxisIndex: 1,
+						data:[66.67,95.00,74.49,138.57,53.29,176.17,91.80,19.62,-79.90,-38.65,-68.00,-48.44]
+					}
+				]
+			};
+
+			if (optionMTrend && typeof optionMTrend === "object") {
+				myChartMTrend.clear();
+				myChartMTrend.resize();
+				myChartMTrend.setOption(optionMTrend,true);
+			};
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>

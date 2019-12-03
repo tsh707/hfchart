@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://www.gexf.net/1.2draft" version="1.2" xmlns:viz="http://www.gexf.net/1.2draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd">
+  <meta lastmodifieddate="2014-01-30">
+    <creator>Gephi 0.8.1</creator>
+    <description></description>
+  </meta>
+  <graph defaultedgetype="undirected" mode="static">
+    <attributes class="node" mode="static">
+      <attribute id="modularity_class" title="Modularity Class" type="integer"></attribute>
+    </attributes>
+    <nodes>
+      <node id="0" label="出发口A0">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"></attvalue>
+        </attvalues>
+        <viz:size value="88.685715"></viz:size>
+        <viz:position x="350" y="140" z="0.0"></viz:position>
+        <viz:color r="235" g="81" b="72"></viz:color>
+      </node>
+	  <node id="1" label="出发口A1">
+        <attvalues>
+          <attvalue for="modularity_class" value="1"></attvalue>
+        </attvalues>
+        <viz:size value="118.685715"></viz:size>
+        <viz:position x="306" y="140" z="0.0"></viz:position>
+        <viz:color r="235" g="81" b="72"></viz:color>
+      </node>
+      <node id="2" label="出发大厅A2">
+        <attvalues>
+          <attvalue for="modularity_class" value="2"></attvalue>
+        </attvalues>
+        <viz:size value="142.4"></viz:size>
+        <viz:position x="280" y="120" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>      
+      <node id="3" label="出发大厅A3">
+        <attvalues>
+          <attvalue for="modularity_class" value="3"></attvalue>
+        </attvalues>
+        <viz:size value="75"></viz:size>
+        <viz:position x="340" y="80" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>      
+      <node id="4" label="出发大厅A4">
+        <attvalues>
+          <attvalue for="modularity_class" value="4"></attvalue>
+        </attvalues>
+        <viz:size value="90.600006"></viz:size>
+        <viz:position x="320" y="50" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>      
+      <node id="5" label="出发大厅A5">
+        <attvalues>
+          <attvalue for="modularity_class" value="5"></attvalue>
+        </attvalues>
+        <viz:size value="100.37143"></viz:size>
+        <viz:position x="290" y="20" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>
+	  
+	  <node id="6" label="出发大厅A6">
+        <attvalues>
+          <attvalue for="modularity_class" value="6"></attvalue>
+        </attvalues>
+        <viz:size value="63.37143"></viz:size>
+        <viz:position x="215" y="60" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>
+	  <node id="7" label="出发大厅A7">
+        <attvalues>
+          <attvalue for="modularity_class" value="7"></attvalue>
+        </attvalues>
+        <viz:size value="73.37143"></viz:size>
+        <viz:position x="185" y="90" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>
+	  <node id="8" label="出发大厅A8">
+        <attvalues>
+          <attvalue for="modularity_class" value="8"></attvalue>
+        </attvalues>
+        <viz:size value="88.37143"></viz:size>
+        <viz:position x="195" y="110" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>
+	  <node id="9" label="出发大厅A9">
+        <attvalues>
+          <attvalue for="modularity_class" value="9"></attvalue>
+        </attvalues>
+        <viz:size value="90.37143"></viz:size>
+        <viz:position x="205" y="130" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>
+      <node id="10" label="出发大厅A10">
+        <attvalues>
+          <attvalue for="modularity_class" value="10"></attvalue>
+        </attvalues>
+        <viz:size value="63.37143"></viz:size>
+        <viz:position x="225" y="140" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>
+	  <node id="11" label="出发口A11">
+        <attvalues>
+          <attvalue for="modularity_class" value="11"></attvalue>
+        </attvalues>
+        <viz:size value="53.37143"></viz:size>
+        <viz:position x="180" y="140" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>
+	  <node id="12" label="出发口A12">
+        <attvalues>
+          <attvalue for="modularity_class" value="12"></attvalue>
+        </attvalues>
+        <viz:size value="43.37143"></viz:size>
+        <viz:position x="150" y="140" z="0.0"></viz:position>
+        <viz:color r="236" g="81" b="72"></viz:color>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="15331" source="0" target="1">
+        <attvalues></attvalues>
+      </edge>
+      <edge id="10565" source="1" target="2" weight="1234.0">
+        <attvalues>1234</attvalues>
+      </edge>
+      <edge id="7314" source="1" target="3" weight="10.0">
+        <attvalues>1634</attvalues>
+      </edge>
+      <edge id="8375" source="3" target="4" weight="6.0">
+        <attvalues>230</attvalues>
+      </edge>
+	  <edge id="2117" source="3" target="5" weight="6.0">
+        <attvalues>154</attvalues>
+      </edge>
+	  <edge id="6123" source="4" target="5" weight="6.0">
+        <attvalues>257</attvalues>
+      </edge>
+	  <edge id="3112" source="2" target="5" weight="6.0">
+        <attvalues>367</attvalues>
+      </edge>
+	  <edge id="1895" source="12" target="11" weight="6.0">
+        <attvalues>529</attvalues>
+      </edge>
+	  
+      <edge id="2113" source="11" target="10">
+        <attvalues></attvalues>
+      </edge>
+      <edge id="2141" source="10" target="2">
+        <attvalues></attvalues>
+      </edge>
+      <edge id="8124" source="10" target="1">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="5142" source="10" target="9">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="1142" source="10" target="6">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="4618" source="9" target="8">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="3516" source="8" target="7">
+        <attvalues></attvalues>
+      </edge>
+	  
+	  <edge id="1273" source="6" target="5" weight="9.0">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="579" source="6" target="2" weight="9.0">
+        <attvalues></attvalues>
+      </edge>
+	  
+	  <edge id="1920" source="2" target="4" weight="9.0">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="2150" source="2" target="8" weight="9.0">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="1517" source="2" target="9" weight="9.0">
+        <attvalues></attvalues>
+      </edge>
+	  
+      <edge id="967" source="7" target="4" weight="9.0">
+        <attvalues></attvalues>
+      </edge>
+      <edge id="3319" source="7" target="6" weight="10.0">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="842" source="7" target="5" weight="9.0" value="888" name="sdfsdf">
+        <attvalues><attvalue>999</attvalue></attvalues>
+      </edge>
+	  <edge id="1213" source="2" target="7" weight="2.0">
+        <attvalues></attvalues>
+      </edge>
+	  <edge id="4125" source="2" target="3" weight="2.0">
+        <attvalues></attvalues>
+      </edge>
+	  
+    </edges>
+  </graph>
+</gexf>

@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+		<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+	<table>
+		<tr>
+			<td colspan=2 style="align:center"><div id="mainMedium" style="width:700px;height:500px;margin-left:50px">aa</div></td>
+			
+		</tr>
+		<tr>
+			<td><div id="mainTV" style="width:460px;height:370px">aa</div></td>
+			<td><div id="mainRD" style="width:460px;height:370px;margin-top:50px">aa</div></td>
+		</tr>
+		<tr>
+			<td><div id="mainNet" style="width:460px;height:370px;margin-top:50px">aa</div></td>
+			<td><div id="mainWap" style="width:460px;height:370px;margin-top:50px">aa</div></td>
+		</tr>
+	</table>
+	
+   
+        
+		
+        <script type="text/javascript">
+
+			var myChartMedium = echarts.init(document.getElementById("mainMedium"));
+			var myChartTV = echarts.init(document.getElementById("mainTV"));
+			var myChartRD = echarts.init(document.getElementById("mainRD"));
+			var myChartNet = echarts.init(document.getElementById("mainNet"));
+			var myChartWap = echarts.init(document.getElementById("mainWap"));
+
+			var app = {};
+			app.title = '媒介分布';			
+			
+			var idx = 1;
+			optionMedium = {
+				title : {
+					text: '媒介分布',
+					subtext: '',
+					x:'left'
+				},
+				tooltip : {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					x:'center',
+					y : 'bottom',
+					data:['电视','广播','网站','手机']
+				},
+				toolbox: {
+					show : true,
+					feature : {
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
+						magicType : {
+							show: true, 
+							type: ['pie', 'funnel'],
+							option: {
+								funnel: {
+									x: '25%',
+									width: '50%',
+									funnelAlign: 'left',
+									max: 1548
+								}
+							}
+						},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				series : [
+					{
+						radius: '65%',
+						name:'媒介',
+						type:'pie',
+						data:[
+							{value:360, name:'电视'},
+							{value:120, name:'广播'},
+							{value:80, name:'网站'},
+							{value:50, name:'手机'}
+						]
+					}
+				]
+			};
+			
+			optionTV = {
+				title : {
+					text: '电视频道分布',
+					subtext: '',
+					x:'left'
+				},
+				tooltip : {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					x:'center',
+					y : 'bottom',
+					data:['CCTV1','CCTV2','CCTV7','CCTV13','旅游卫视','中国教育电视台','中国气象频道']
+				},
+				toolbox: {
+					show : true,
+					feature : {
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				series : [
+					{
+						radius: '65%',
+						name:'频道',
+						type:'pie',
+						data:[
+							{value:1031, name:'CCTV1'},
+							{value:220, name:'CCTV2'},
+							{value:180, name:'CCTV7'},
+							{value:82, name:'CCTV13'},
+							{value:50, name:'旅游卫视'},
+							{value:20, name:'中国教育电视台'},
+							{value:17, name:'中国气象频道'}
+						]
+					}
+				]
+			};
+			
+			optionRD = {
+				title : {
+					text: '广播频道分布',
+					subtext: '',
+					x:'left'
+				},
+				tooltip : {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					x:'center',
+					y : 'bottom',
+					data:['经济之声','中国之声','都市之声','中国交通广播','华夏之声','乡村之声','香港之声']
+				},
+				toolbox: {
+					show : true,
+					feature : {
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				series : [
+					{
+						radius: '65%',
+						name:'频道',
+						type:'pie',
+						data:[
+							{value:100, name:'经济之声'},
+							{value:80, name:'中国之声'},
+							{value:230, name:'都市之声'},
+							{value:70, name:'中国交通广播'},
+							{value:51, name:'华夏之声'},
+							{value:151, name:'乡村之声'},
+							{value:51, name:'香港之声'}
+						]
+					}
+				]
+			};
+			
+			optionNet = {
+				title : {
+					text: '网站平台分布',
+					subtext: '',
+					x:'left'
+				},
+				tooltip : {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					x:'center',
+					y : 'bottom',
+					data:['中国天气','环球气象']
+				},
+				toolbox: {
+					show : true,
+					feature : {
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				series : [
+					{
+						radius: '65%',
+						name:'网站',
+						type:'pie',
+						data:[
+							{value:150, name:'中国天气'},
+							{value:170, name:'环球气象'}
+						]
+					}
+				]
+			};
+			
+			optionWap = {
+				title : {
+					text: '手机应用分布',
+					subtext: '',
+					x:'left'
+				},
+				tooltip : {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					x:'center',
+					y : 'bottom',
+					data:['中国天气移动端']
+				},
+				toolbox: {
+					show : true,
+					feature : {
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				series : [
+					{
+						radius: '65%',
+						name:'APP',
+						type:'pie',
+						data:[
+							{value:133, name:'中国天气移动端'}
+						]
+					}
+				]
+			};
+			
+			myChartMedium.setOption(optionMedium);
+			myChartTV.setOption(optionTV);
+			myChartRD.setOption(optionRD);
+			myChartNet.setOption(optionNet);
+			myChartWap.setOption(optionWap);
+
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>

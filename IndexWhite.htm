@@ -1,0 +1,716 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+
+    <body style="background-color:#FFFFFF">
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+		<!--div class="divCenter">福建省广告市场健康度一览</div-->
+		<table>
+			<tr><td colspan=2 align="center"><h1 style="background-color:#FFF;margin-top:-1px;margin-bottom:-1px;color:#000">华风集团广告资源可视化平台</h1></td></tr>
+			<tr>
+				<td>
+					<table>
+						<tr><td colspan=2><div id="main" style="width:660px;height:300px;margin-top: 30px;align:left"></div></td></tr>
+						<tr>
+							<td>><div id="main11" style="width:330px;height:270px;margin-top: -50px;align:left">aa</div></td>
+							<td>><div id="main12" style="width:330px;height:270px;margin-top: -50px;align:left">bb</div></td>
+						</tr>
+					</table>
+				</td>
+				<td align="top"><div id="main2" style="width: 660px;height:570px;margin-top: -50px;align:top"></div></td>
+			</tr>
+		</table>
+        
+		
+        <script type="text/javascript">
+            var dom = document.getElementById("main2");
+			var myChart6 = echarts.init(dom);
+			var app = {};
+			option = null;
+			/*option = {
+				backgroundColor: '#FFF',
+				title: {
+					text: '分类饱和度',
+					x:'center',
+					textStyle:{//标题内容的样式
+						color:'#EAEAEA',//京东红
+						fontStyle:'normal',//主标题文字字体风格，默认normal，有italic(斜体),oblique(斜体)
+						fontWeight:"lighter",//可选normal(正常)，bold(加粗)，bolder(加粗)，lighter(变细)，100|200|300|400|500...
+						fontFamily:"san-serif",//主题文字字体，默认微软雅黑
+						fontSize:28//主题文字字体大小，默认为18px
+					}
+				},
+				tooltip: {
+					trigger: 'item',
+					backgroundColor : 'rgba(0,0,250,0.2)'
+				},
+				legend: {
+					type: 'scroll',
+					bottom: 10,
+					data: (function (){
+						var list = [];
+						for (var i = 1; i <=3; i++) {
+							list.push(i + 6 + '月');
+						}
+						return list;
+					})()
+				},
+				visualMap: {
+					top: 'middle',
+					right: 10,
+					color: ['red', 'yellow'],
+					calculable: true
+				},
+				radar: {
+				   indicator : [
+					   { text: '城市景观广告', max: 400},
+					   { text: '字幕条', max: 400},
+					   { text: '栏目冠名', max: 400},
+					   { text: '预警信息冠名', max: 400},
+					   { text: '三通版无声硬广', max: 400}
+					]
+				},
+				series : (function (){
+					var series = [];
+					series.push({
+							name:'饱和度指数',
+							type: 'radar',
+							symbol: 'none',
+							lineStyle: {
+								width: 1
+							},
+							emphasis: {
+								areaStyle: {
+									color: 'rgba(0,250,0,0.3)'
+								}
+							},
+							data:[
+							  {
+								value:[350,200,400,166,230],
+								name: '7月'
+							  }
+							]
+						});
+					series.push({
+							name:'饱和度指数',
+							type: 'radar',
+							symbol: 'none',
+							lineStyle: {
+								width: 1
+							},
+							emphasis: {
+								areaStyle: {
+									color: 'rgba(125,250,0,0.3)'
+								}
+							},
+							data:[
+							  {
+								value:[240,100,300,266,130],
+								name: '8月'
+							  }
+							]
+						});
+					series.push({
+							name:'饱和度指数',
+							type: 'radar',
+							symbol: 'none',
+							lineStyle: {
+								width: 1
+							},
+							emphasis: {
+								areaStyle: {
+									color: 'rgba(255,100,0,0.3)'
+								}
+							},
+							data:[
+							  {
+								value:[150,300,330,366,330],
+								name: '9月'
+							  }
+							]
+						});
+					return series;
+				})()
+			};*/
+			option = {
+				title: {
+					text: ''
+				},
+				tooltip: {
+					trigger: 'axis'
+				},
+				legend: {
+					x: 'center',
+					y: 'bottom',
+					data:['1月','2月','3月']
+				},
+				radar: [
+					{
+						indicator: [
+							{text: '城市景观广告', max: 100},
+							{text: '字幕条', max: 100},
+							{text: '栏目冠名', max: 100},
+							{text: '预警信息冠名', max: 100},
+							{text: '三通版无声硬广', max: 100}
+						],
+						center: ['25%','30%'],
+						radius: 80
+					},					
+					{
+						indicator: [
+							{text: 'CCTV-1', max: 100},
+							{text: 'CCTV-2', max: 100},
+							{text: 'CCTV-7', max: 100},
+							{text: '旅游卫视', max: 100},
+							{text: '中国教育电视台', max: 100},
+							{text: '中国气象频道', max: 100},
+							{text: '中央人民广播电台', max: 100},
+							{text: '中国天气网', max: 100},
+							{text: '中国天气网移动端', max: 100}
+						],
+						radius: 80,
+						center: ['25%','75%'],
+					},
+					{
+						indicator: (function (){
+							var res = [];
+							for (var i = 1; i <= 6; i++) {
+								res.push({text:i+'单元',max:100});
+							}
+							return res;
+						})(),
+						center: ['75%','30%'],
+						radius: 80
+					},
+					{
+						indicator: [
+							{text: '特级城市', max: 100},
+							{text: '一级城市', max: 100},
+							{text: '二级城市', max: 100},
+							{text: '三级城市', max: 100}
+						],
+						center: ['75%','75%'],
+						radius: 80
+					}
+				],
+				series: [
+					{
+						type: 'radar',
+						 tooltip: {
+							trigger: 'item'
+						},
+						itemStyle: {normal: {areaStyle: {type: 'default'}}},
+						data: [
+							{
+								value: [60,73,85,40,77],
+								name: '1月'
+							},
+							{
+								value: [46,85,17,60,66],
+								name: '2月'
+							},
+							{
+								value: [70,65,79,71,82],
+								name: '3月'
+							}
+						]
+					},
+					{
+						type: 'radar',
+						radarIndex: 1,
+						data: [
+							{
+								value: [85, 90, 90, 95, 95,86,88,69,75],
+								name: '1月'
+							},
+							{
+								value: [95, 80, 95, 90, 93,83,67,89,56],
+								name: '2月'
+							},
+							{
+								value: [73, 85, 90, 81, 79,88,88,92,90],
+								name: '3月'
+							}
+						]
+					},
+					{
+						type: 'radar',
+						radarIndex: 2,
+						itemStyle: {normal: {areaStyle: {type: 'default'}}},
+						data: [
+							{
+								name: '1月',
+								value: [42.6, 5.9, 9.0, 26.4, 28.7, 70.7],
+							},
+							{
+								name:'2月',
+								value:[2.0, 54.9, 7.0, 23.2, 25.6, 76.7]
+							},
+							{
+								name:'3月',
+								value:[75.6, 82.2, 48.7, 18.8, 6.0, 2.3]
+							}
+						]
+					},
+					{
+						type: 'radar',
+						radarIndex: 3,
+						itemStyle: {normal: {areaStyle: {type: 'default'}}},
+						data: [
+							{
+								name: '1月',
+								value: [42.6, 25.9, 69.0, 76.4],
+							},
+							{
+								name:'2月',
+								value:[32.0, 54.9, 87.0, 23.2]
+							},
+							{
+								name:'3月',
+								value:[75.6, 82.2, 48.7,56.3]
+							}
+						]
+					}
+				]
+			};
+
+			if (option && typeof option === "object") {
+				myChart6.clear();
+				myChart6.resize();
+				myChart6.setOption(option,true);
+			};
+			
+			//******************************************************************************************************
+			// 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+
+            // 指定图表的配置项和数据
+            option = {
+                backgroundColor: '#FFF',
+                tooltip: {
+                    formatter: "{a} <br/>{c} {b}"
+                },
+				title: {
+					text: '',
+					left: '300px',
+					textStyle:{//标题内容的样式
+						color:'#EAEAEA',//京东红
+						fontStyle:'normal',//主标题文字字体风格，默认normal，有italic(斜体),oblique(斜体)
+						fontWeight:"lighter",//可选normal(正常)，bold(加粗)，bolder(加粗)，lighter(变细)，100|200|300|400|500...
+						fontFamily:"san-serif",//主题文字字体，默认微软雅黑
+						fontSize:28//主题文字字体大小，默认为18px
+					}
+				},
+                toolbox: {
+                    show: true,
+                    feature: {
+                        mark: {
+                            show: false
+                        },
+                        restore: {
+                            show: false
+                        },
+                        saveAsImage: {
+                            show: false
+                        }
+                    }
+                },
+                series: [{
+                    name: '饱和度',
+                    type: 'gauge',
+					center: ['48.5%', '45%'],  
+                    min: 0,
+                    max: 100,
+                    splitNumber: 10,
+                    radius: '80%',
+                    axisLine: { // 坐标轴线
+                        lineStyle: { // 属性lineStyle控制线条样式
+                            color: [
+                                [0.09, 'lime'],
+                                [0.82, '#1e90ff'],
+                                [1, '#ff4500']
+                            ],
+                            width: 3,
+                            shadowColor: '#000', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    axisLabel: { // 坐标轴小标记
+                        textStyle: { // 属性lineStyle控制线条样式
+                            fontWeight: 'bolder',
+                            color: '#000',
+                            shadowColor: '#000', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    axisTick: { // 坐标轴小标记
+                        length: 15, // 属性length控制线长
+                        lineStyle: { // 属性lineStyle控制线条样式
+                            color: 'auto',
+                            shadowColor: '#000', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    splitLine: { // 分隔线
+                        length: 25, // 属性length控制线长
+                        lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
+                            width: 3,
+                            color: '#000',
+                            shadowColor: '#000', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    pointer: { // 分隔线
+                        shadowColor: '#000', //默认透明
+                        shadowBlur: 5
+                    },
+                    title: {
+						offsetCenter: [0, '90%'], // x, y，单位px
+                        textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            fontSize: 20,
+                            fontStyle: 'italic',
+                            color: '#000',
+                            shadowColor: '#000', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    detail: {
+                        backgroundColor: '#444',
+                        borderWidth: 1,
+                        borderColor: '#000',
+                        shadowColor: '#000', //默认透明
+                        shadowBlur: 5,
+                        offsetCenter: [0, '50%'], // x, y，单位px
+                        textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            color: '#A0A'
+                        }
+                    },
+                    data: [{
+                        value: 38,
+                        name: '资源饱和度'
+                    }]
+                }, 
+                {
+                    name: '营销价值',
+                    type: 'gauge',
+                    center: ['15%', '55%'], // 默认全局居中
+                    radius: '60%',
+                    min: 0,
+                    max: 100,
+                    endAngle: -40,
+                    splitNumber: 10,
+                    axisLine: { // 坐标轴线
+                        lineStyle: { // 属性lineStyle控制线条样式
+                            color: [
+                                [0.29, 'lime'],
+                                [0.86, '#1e90ff'],
+                                [1, '#ff4500']
+                            ],
+                            width: 2,
+                            shadowColor: '#000', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    axisLabel: { // 坐标轴小标记
+                        textStyle: { // 属性lineStyle控制线条样式
+                            fontWeight: 'bolder',
+                            color: '#000',
+                            shadowColor: '#000', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    axisTick: { // 坐标轴小标记
+                        length: 12, // 属性length控制线长
+                        lineStyle: { // 属性lineStyle控制线条样式
+                            color: 'auto',
+                            shadowColor: '#000', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    splitLine: { // 分隔线
+                        length: 20, // 属性length控制线长
+                        lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
+                            width: 3,
+                            color: '#000',
+                            shadowColor: '#000', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    pointer: {
+                        width: 5,
+                        shadowColor: '#000', //默认透明
+                        shadowBlur: 5
+                    },
+                    title: {
+                        offsetCenter: [0, '80%'], // x, y，单位px
+                        textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            fontStyle: 'italic',
+                            color: '#000',
+                            shadowColor: '#000', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    detail: {
+                        //backgroundColor: 'rgba(30,144,255,0.8)',
+                        // borderWidth: 1,
+                        borderColor: '#000',
+                        shadowColor: '#000', //默认透明
+                        shadowBlur: 5,
+                        width: 80,
+                        height: 30,
+                        offsetCenter: [5, '60%'], // x, y，单位px
+                        textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            color: '#000'
+                        }
+                    },
+                    data: [{
+                        value: 70,
+                        name: '营销价值'
+                    }]
+                }, 
+                {
+                    name: '剩余资源',
+                    type: 'gauge',
+                    center: ['82%', '55%'], // 默认全局居中
+                    radius: '60%',
+                    min: 0,
+                    max: 200,
+                    endAngle: -40,
+                    splitNumber: 10,
+                    axisLine: { // 坐标轴线
+                        lineStyle: { // 属性lineStyle控制线条样式
+                            color: [
+                                [0.29, 'lime'],
+                                [0.86, '#1e90ff'],
+                                [1, '#ff4500']
+                            ],
+                            width: 2,
+                            shadowColor: '#000', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    axisLabel: { // 坐标轴小标记
+                        textStyle: { // 属性lineStyle控制线条样式
+                            fontWeight: 'bolder',
+                            color: '#000',
+                            shadowColor: '#000', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    axisTick: { // 坐标轴小标记
+                        length: 12, // 属性length控制线长
+                        lineStyle: { // 属性lineStyle控制线条样式
+                            color: 'auto',
+                            shadowColor: '#000', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    splitLine: { // 分隔线
+                        length: 20, // 属性length控制线长
+                        lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
+                            width: 3,
+                            color: '#000',
+                            shadowColor: '#000', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    pointer: {
+                        width: 5,
+                        shadowColor: '#000', //默认透明
+                        shadowBlur: 5
+                    },
+                    title: {
+                        offsetCenter: [0, '80%'], // x, y，单位px
+                        textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            fontStyle: 'italic',
+                            color: '#000',
+                            shadowColor: '#000', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    detail: {
+                        //backgroundColor: 'rgba(30,144,255,0.8)',
+                        // borderWidth: 1,
+                        borderColor: '#000',
+                        shadowColor: '#000', //默认透明
+                        shadowBlur: 5,
+                        width: 80,
+                        height: 30,
+                        offsetCenter: [5, '60%'], // x, y，单位px
+                        textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder',
+                            color: '#000'
+                        }
+                    },
+                    data: [{
+                        value: 100,
+                        name: '剩余资源'
+                    }]
+                }]
+            };
+            
+            myChart.setOption(option);
+			setInterval(function() {
+                option.series[0].data[0].value = (Math.random() * 40).toFixed(2) - 0;
+                option.series[1].data[0].value = (Math.random() * 47).toFixed(2) - 0;
+                option.series[2].data[0].value = (Math.random() * 200).toFixed(2) - 0;
+                //option.series[3].data[0].value = (Math.random() * 2).toFixed(2) - 0;
+                myChart.setOption(option);
+            }, 2000)
+			
+			var dom = document.getElementById("main11");
+			var myChart11 = echarts.init(dom);
+			var app = {};
+			option1 = null;
+			option1 = {
+				title: {
+					text: '价值排名',
+					subtext: ''
+				},
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: {
+						type: 'shadow'
+					}
+				},
+				legend: {
+					data: ['上月', '本月']
+				},
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					containLabel: true
+				},
+				xAxis: {
+					type: 'value',
+					boundaryGap: [0, 0.01]
+				},
+				yAxis: {
+					type: 'category',
+					data: ['CCTV-1','CCTV-2','CCTV-7','旅游卫视','中国天气网']
+				},
+				series: [
+					{
+						name: '上月',
+						type: 'bar',
+						data: [18203, 23489, 29034, 104970, 131744]
+					},
+					{
+						name: '本月',
+						type: 'bar',
+						data: [19325, 23438, 31000, 121594, 134141]
+					}
+				]
+			};
+			if (option1 && typeof option1 === "object") {
+				myChart11.clear();
+				myChart11.resize();
+				myChart11.setOption(option1,true);
+			};
+
+            var dom = document.getElementById("main12");
+			var myChart12 = echarts.init(dom);
+			var app = {};
+			app.title = '';
+			option1 = null;
+			option1 = {
+				backgroundColor: '#FFF',
+				title: {
+					text: '受众兴趣爱好',
+					show : false ,
+					x:'center',
+					textStyle:{//标题内容的样式
+						color:'#EAEAEA',//京东红
+						fontStyle:'normal',//主标题文字字体风格，默认normal，有italic(斜体),oblique(斜体)
+						fontWeight:"lighter",//可选normal(正常)，bold(加粗)，bolder(加粗)，lighter(变细)，100|200|300|400|500...
+						fontFamily:"san-serif",//主题文字字体，默认微软雅黑
+						fontSize:28//主题文字字体大小，默认为18px
+					}
+				},
+				series: [{
+					type: 'treemap',
+					data: [{
+						name: '即将到期',            // Second tree
+						value: 20,
+						children: [{
+							name: '字幕条',       // Son of first tree
+							value: 20
+						},{
+							name: '西安',       // Son of first tree
+							value: 20
+						},{
+							name: '南京',       // Son of first tree
+							value: 20
+						},{
+							name: '上海',       // Son of first tree
+							value: 20
+						},{
+							name: '北京（首）',       // Son of first tree
+							value: 20
+						},{
+							name: '天津',       // Son of first tree
+							value: 20
+						}]
+					}, {
+						name: '未售卖',            // Second tree
+						value: 20,
+						children: [{
+							name: '拉萨',       // Son of first tree
+							value: 20
+						},{
+							name: '预警信息冠名',       // Son of first tree
+							value: 20
+						},{
+							name: '南宁',       // Son of first tree
+							value: 20
+						},{
+							name: '乌鲁木齐',       // Son of first tree
+							value: 20
+						}]
+					},{
+						name: '满档资源',            // Second tree
+						value: 20,
+						children: [{
+							name: '栏目冠名',       // Son of first tree
+							value: 20
+						},{
+							name: '三通版无声硬广',       // Son of first tree
+							value: 20
+						},{
+							name: 'CCTV-7片尾30秒',       // Son of first tree
+							value: 20
+						},{
+							name: '天气在变化',       // Son of first tree
+							value: 20
+						}]
+					}]
+				}]
+			};
+			;
+			if (option1 && typeof option1 === "object") {
+				myChart12.clear();
+				myChart12.resize();
+				myChart12.setOption(option1,true);
+			};
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>

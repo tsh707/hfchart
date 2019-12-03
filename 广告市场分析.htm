@@ -1,0 +1,496 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+	<table>
+	<tr><td colspan=2><div id="mainMonthIndustry" style="width:960px;height:370px">aa</div></td></tr>
+	<tr><td colspan=2><div id="mainCurIndustry" style="width:960px;height:370px">aa</div></td></tr>    
+	<tr>
+		<td><div id="mainCategory" style="width:450px;height:370px">aa</div></td>
+		<td><div id="mainBrand" style="width:450px;height:370px">aa</div>	</td>
+	</tr>
+	<tr><td colspan=2><div id="mainCompetitive" style="width:960px;height:370px">aa</div></td></tr>
+	
+        <script type="text/javascript">
+			var myChartMonthIndustry = echarts.init(document.getElementById("mainMonthIndustry"));
+			var myChartCurIndustry = echarts.init(document.getElementById("mainCurIndustry"));
+			var myChartCompetitive = echarts.init(document.getElementById("mainCompetitive"));
+			var myChartCategory = echarts.init(document.getElementById("mainCategory"));
+			var myChartBrand = echarts.init(document.getElementById("mainBrand"));
+			
+			var app = {};
+			app.title = '行业分析';
+
+			var colors = ['#5793f3', '#d14a61', '#675bba', '#D52BD5'];
+
+			optionMonthIndustry = {
+				color: colors,
+				title: {
+					text: '广告市场分析',
+					//x:'center',
+					subtext: ''
+				},
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: {
+						type: 'cross'
+					}
+				},
+				grid: {
+					right: '20%'
+				},
+				toolbox: {
+					show:false,
+					feature: {
+						dataView: {show: true, readOnly: false},
+						restore: {show: true},
+						saveAsImage: {show: true}
+					}
+				},
+				legend: {
+					data:['总体行业','电视行业','广播行业','互联网行业','华风集团']
+				},
+				xAxis: [
+					{
+						type: 'category',
+						axisTick: {
+							alignWithLabel: true
+						},
+						data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+					}
+				],
+				yAxis: [
+					{
+						type: 'value',
+						name: '总体(亿元)',
+						min: 0,
+						max: 250,
+						position: 'left',
+						axisLine: {
+							lineStyle: {
+								color: colors[0]
+							}
+						},
+						axisLabel: {
+							formatter: '{value}'
+						}
+					},
+					{
+						type: 'value',
+						name: '各媒介(千万元)',
+						min: 0,
+						max: 250,
+						position: 'right',
+						offset: 80,
+						axisLine: {
+							lineStyle: {
+								color: colors[1]
+							}
+						},
+						axisLabel: {
+							formatter: '{value}'
+						}
+					},
+					{
+						type: 'value',
+						name: '华风集团(百万元)',
+						min: 0,
+						max: 25,
+						position: 'right',
+						axisLine: {
+							lineStyle: {
+								color: colors[2]
+							}
+						},
+						axisLabel: {
+							formatter: '{value}'
+						}
+					}
+				],
+				series: [
+					{
+						name:'总体行业',
+						type:'bar',
+						data:[6.0, 4.9, 7.0, 3.2, 5.6, 26.7, 35.6, 62.2, 32.6, 6.0, 4.4, 5.3]
+					},
+					{
+						name:'电视行业',
+						type:'bar',
+						yAxisIndex: 0,
+						data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 105.6, 112.2, 48.7, 18.8, 6.0, 2.3]
+					},
+					{
+						name:'广播行业',
+						type:'bar',
+						yAxisIndex: 1,
+						data:[0.6, 0.9, 1.0, 2.4, 2.7, 1.7, 5.6, 4.2, 21.7, 1.8, 0.9, 0.3]
+					},
+					{
+						name:'互联网行业',
+						type:'bar',
+						yAxisIndex: 0,
+						data:[12.6, 25.9, 19.0, 36.4, 38.7, 170.7, 105.6, 212.2, 148.7, 68.8, 16.0, 22.3]
+					},
+					{
+						name:'华风集团',
+						type:'line',
+						yAxisIndex: 2,
+						data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+					}
+				]
+			};
+
+			optionCurIndustry = {
+				tooltip : {
+				trigger: 'axis',
+				axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+					type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+				}
+			},
+			title : {
+					text: '当月分区域/行业广告费用分布情况',
+					x:'left'
+				},
+			legend: {
+				y:'30px',
+				data: ['东北','华北','西南','西北','华东','华南','华中']
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			xAxis:  {
+				axisLabel: {
+					rotate: 60,
+				},
+				type: 'category',
+				data: ['药品','食品','饮料','酒精类饮品','化妆品/浴室用品','清洁用品','邮电通讯','IT产品及服务','家用电器','家居用品','个人用品','衣着','娱乐及休闲','商业及服务性行业','金融业','交通','房地产/建筑工程行业','工业用品','农业','烟草类','活动类','杂类']
+			},			
+			yAxis: {
+				type: 'value'
+			},
+			series: [
+				{
+					name: '东北',
+					type: 'bar',
+					stack: '总量',
+					label: {
+						normal: {
+							show: true,
+							position: 'insideRight'
+						},
+						formatter: function(params) {
+							if (params.value > 0) {
+								return params.value;
+							} else {
+								return '';
+							}
+						}
+					},
+					data: [329,,231,,,,,156,,,,,,,,,,,,,,]
+				},
+				{
+					name: '华北',
+					type: 'bar',
+					stack: '总量',
+					label: {
+						normal: {
+							show: true,
+							position: 'insideRight'
+						}
+					},
+					data: [,111,,,,,,,,,,,,,,,426,,,,,764]
+				},
+				{
+					name: '西南',
+					type: 'bar',
+					stack: '总量',
+					label: {
+						normal: {
+							show: true,
+							position: 'insideRight'
+						}
+					},
+					data: [,,155,,,,333,,,,,,,,,,,,631,,,]
+				},
+				{
+					name: '西北',
+					type: 'bar',
+					stack: '总量',
+					label: {
+						normal: {
+							show: true,
+							position: 'insideRight'
+						}
+					},
+					data: [,,,,289,,,,,,,,,,299,,,534,,,,]
+				},
+				{
+					name: '华东',
+					type: 'bar',
+					stack: '总量',
+					label: {
+						normal: {
+							show: true,
+							position: 'insideRight'
+						}
+					},
+					data: [,,,,,,342,,,,443,,563,,,,,,,,367,]
+				},
+				{
+					name: '华南',
+					type: 'bar',
+					stack: '总量',
+					label: {
+						normal: {
+							show: true,
+							position: 'insideRight'
+						}
+					},
+					data: [,,,,,,,,,388,,,,,268,,,312,,,,223]
+				},
+				{
+					name: '华中',
+					type: 'bar',
+					stack: '总量',
+					label: {
+						normal: {
+							show: true,
+							position: 'insideRight'
+						}
+					},
+					data: [,,,,,,423,,,,273,,199,,,,,,111,,,]
+				}
+			]
+		};
+		
+		optionCategory = {
+				title: {
+					text: '广告投放Top10品类'//,
+					//x:'center',
+					//subtext: '数据纯属虚构'
+				},
+				toolbox: {
+					feature: {
+						dataView: {show: true, readOnly: false},
+						magicType: {show: true, type: ['line', 'bar']},
+						restore: {show: true},
+						saveAsImage: {show: true}
+					}
+				},
+				/*legend: {
+					y: 'bottom',
+					data:['合同额','潜在额']
+				},*/
+				xAxis: [
+					{
+						axisLabel: {
+						rotate: 60,
+					},
+						type: 'category',
+						axisLine: {onZero: true},
+						data:['酒精类饮品','清洁用品','家用电器','商业及服务性行业','交通','药品','食品','饮料','邮电通讯','金融业'],
+						axisPointer: {
+							type: 'shadow'
+						}
+					}
+				],
+				yAxis : [
+					{
+						name: '广告花费',
+						type : 'value',
+						axisLabel: {
+							formatter: '{value}'
+						}
+					}
+				],
+				series: [
+					{
+						name:'CPM',
+						type:'bar',
+						/*itemStyle: {
+								normal: { //这里必须加normal,否者不显示夜色变化
+									color: function(params) {//超过预警值显示红色
+										if (params.Text='天气预报') {
+											return '#2F3300';
+										} else {
+											return '#FF9900';
+										}
+									}
+								}
+							},*/
+						data:[{value:'352',
+								itemStyle: {
+									color: 'orange'
+								}
+							   },{value:'330',
+								itemStyle: {
+									color: 'orange'
+								}
+							   },{value:'126',
+								itemStyle: {
+									color: 'orange'
+								}
+							   },118,95,69,50,45,40,36 ]
+					}
+				]
+			};
+			
+			optionBrand = {
+				title: {
+					text: '广告投放Top10品牌'//,
+					//x:'center',
+					//subtext: '数据纯属虚构'
+				},
+				toolbox: {
+					feature: {
+						dataView: {show: true, readOnly: false},
+						magicType: {show: true, type: ['line', 'bar']},
+						restore: {show: true},
+						saveAsImage: {show: true}
+					}
+				},
+				/*legend: {
+					y: 'bottom',
+					data:['合同额','潜在额']
+				},*/
+				xAxis: [
+					{
+						axisLabel: {
+						rotate: 60,
+					},
+						type: 'category',
+						axisLine: {onZero: true},
+						data:['红塔','易初莲花','华邦','日順皇','天马','长城','窝夫小子','达世行','葛兰素史克','万达'],
+						axisPointer: {
+							type: 'shadow'
+						}
+					}
+				],
+				yAxis : [
+					{
+						name: '广告花费',
+						type : 'value',
+						axisLabel: {
+							formatter: '{value}'
+						}
+					}
+				],
+				series: [
+					{
+						name:'CPM',
+						type:'bar',
+						/*itemStyle: {
+								normal: { //这里必须加normal,否者不显示夜色变化
+									color: function(params) {//超过预警值显示红色
+										if (params.Text='天气预报') {
+											return '#2F3300';
+										} else {
+											return '#FF9900';
+										}
+									}
+								}
+							},*/
+						data:[{
+								value:'226',
+								itemStyle: {
+									color: 'orange'
+								}
+							},{
+								value:'178',
+								itemStyle: {
+									color: 'orange'
+								}
+							},{
+								value:'122',
+								itemStyle: {
+									color: 'orange'
+								}
+							},118,106,69,50, 66.3,55,47]
+					}
+				]
+			};
+			
+			optionCompetitive = {
+				title: {
+					text: '竞争媒体CPM对比分析',
+					//x:'center',
+					subtext: '数据纯属虚构'
+				},
+				toolbox: {
+					feature: {
+						dataView: {show: true, readOnly: false},
+						magicType: {show: true, type: ['line', 'bar']},
+						restore: {show: true},
+						saveAsImage: {show: true}
+					}
+				},
+				/*legend: {
+					y: 'bottom',
+					data:['合同额','潜在额']
+				},*/
+				xAxis: [
+					{
+						type: 'category',
+						axisLine: {onZero: true},
+						data:['CCTV1','CCTV2','CCTV3','CCTV5','CCTV6','CCTV7','CCTV8','天气预报'],
+						axisPointer: {
+							type: 'shadow'
+						}
+					}
+				],
+				yAxis : [
+					{
+						type : 'value',
+						axisLabel: {
+							formatter: '{value} CPM'
+						}
+					}
+				],
+				series: [
+					{
+						name:'CPM',
+						type:'bar',
+						/*itemStyle: {
+								normal: { //这里必须加normal,否者不显示夜色变化
+									color: function(params) {//超过预警值显示红色
+										if (params.Text='天气预报') {
+											return '#2F3300';
+										} else {
+											return '#FF9900';
+										}
+									}
+								}
+							},*/
+						data:[226,178,121,118,106,69,50, {
+															value:'66.3',
+															itemStyle: {
+																color: 'orange'
+															}
+														}]
+					}
+				]
+			}
+			myChartMonthIndustry.setOption(optionMonthIndustry,true);
+			myChartCurIndustry.setOption(optionCurIndustry,true);
+			myChartCategory.setOption(optionCategory,true);
+			myChartBrand.setOption(optionBrand,true);
+			myChartCompetitive.setOption(optionCompetitive,true);
+
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>

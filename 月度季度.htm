@@ -1,0 +1,415 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+	<div id="main1" style="width:960px;height:350px">aa</div>
+    <div id="main2" style="width:960px;height:350px">aa</div>
+        
+		
+        <script type="text/javascript">
+		
+			var dom1 = document.getElementById("main1");
+			var myChart1 = echarts.init(dom1);
+			var dom2 = document.getElementById("main2");
+			var myChart2 = echarts.init(dom2);
+			var app = {};
+			app.title = '销售分布';			
+			
+			option = {
+				title : {
+					text: '分媒体月度销量走势图',
+					x:'center',
+					subtext: ''
+				},
+				tooltip : {
+					trigger: 'axis'
+				},
+				legend: {
+					x:'right',
+					y:'30',
+					data:['CCTV1','CCTV2','CCTV7','CCTV13','旅游卫视','中国教育电视台','中国气象频道','中央人民广播电台','中国天气网','中国天气网移动端','平均销售额']
+				},
+				toolbox: {
+					show : true,
+					feature : {
+						dataView : {show: true, readOnly: false},
+						magicType : {show: true, type: ['line', 'bar']},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				xAxis : [
+					{
+						type : 'category',
+						data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+					}
+				],
+				yAxis : [
+					{
+						type : 'value'
+					}
+				],
+				grid :[
+					{top:'25%'}
+				],
+				series : [
+					{
+						//center: ['48.5%', '45%'],  
+						name:'平均销售额',
+						type:'line',
+						data:[1.52,2.41,3,15.67,16.51,28.98,57.49,74.43,21.7,14.12,"-","-"]
+					},
+					{
+						//center: ['48.5%', '45%'],  
+						name:'平均销售额',
+						type:'line',
+						smooth:false,   //关键点，为true是不支持虚线，实线就用true
+					   itemStyle:{
+						   normal:{
+							   lineStyle:{
+								   width:2,
+								   type:'dotted'  //'dotted'虚线 'solid'实线
+							   }
+						   }
+					   }, 
+						data:["-","-","-","-","-","-","-","-","-",14.12,52.67,71.56]
+					},
+					{
+						name:'CCTV1',
+						type:'bar',
+						data:[7,7.2,10,,80,92,135,,63,71,9.5,7],
+						markPoint : {
+							data : [
+								{type : 'max', name: '最大值'},
+								{type : 'min', name: '最小值'}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name: '平均值'}
+							]
+						}
+					},					
+					{
+						name:'CCTV2',
+						type:'bar',
+						data:[2.2,2.5,1.8,,7,23,,76,19,22,1,1]/*,
+						markPoint : {
+							data : [
+								{name : '年最高', value : 76, xAxis: 7, yAxis: 76},
+								{name : '年最低', value : 1, xAxis: 10, yAxis: 1}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name : '平均值'}
+							]
+						}*/
+					},
+					{
+						name:'CCTV7',
+						type:'bar',
+						data:[1.3,2.1,,12,11,31,49,66,,14,2.2,1.7]/*,
+						markPoint : {
+							data : [
+								{name : '年最高', value : 66, xAxis: 7, yAxis: 66},
+								{name : '年最低', value : 1.3, xAxis: 0, yAxis: 1}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name : '平均值'}
+							]
+						}*/
+					},
+					{
+						name:'CCTV13',
+						type:'bar',
+						data:[0.6,1.1,,8,14,,38.6,45,,8,3,1.1]/*,
+						markPoint : {
+							data : [
+								{name : '年最高', value : 45, xAxis: 7, yAxis: 45},
+								{name : '年最低', value : 0.6, xAxis: 0, yAxis: 1}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name : '平均值'}
+							]
+						}*/
+					},
+					{
+						name:'旅游卫视',
+						type:'bar',
+						data:[0.4,0.8,,5,3.6,10,,42.2,11,3,,1.2]/*,
+						markPoint : {
+							data : [
+								{name : '年最高', value : 42.2, xAxis: 7, yAxis: 42},
+								{name : '年最低', value : 0.4, xAxis: 0, yAxis: 0}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name : '平均值'}
+							]
+						}*/
+					},					
+					{
+						name:'中国教育电视台',
+						type:'bar',
+						data:[0.3,,0.5,,7,8,20,38,,1,0.1,]/*,
+						markPoint : {
+							data : [
+								{name : '年最高', value : 38, xAxis: 7, yAxis: 38},
+								{name : '年最低', value : 0.1, xAxis: 10, yAxis: 0}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name : '平均值'}
+							]
+						}*/
+					},
+					{
+						name:'中国气象频道',
+						type:'bar',
+						data:[0.2,,0.3,1.2,3,,16,27,6.6,1,0.2,1]/*,
+						markPoint : {
+							data : [
+								{name : '年最高', value : 27, xAxis: 7, yAxis: 27},
+								{name : '年最低', value : 0.2, xAxis: 0, yAxis: 0}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name : '平均值'}
+							]
+						}*/
+					},
+					{
+						name:'中央人民广播电台',
+						type:'bar',
+						data:[2.6,, 9.0, 26.4, 28.7, , 175.6, 182.2, , 18.8, 6.0,]/*,
+						markPoint : {
+							data : [
+								{name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
+								{name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name : '平均值'}
+							]
+						}*/
+					},
+					{
+						name:'中国天气网',
+						type:'bar',
+						data:[1.6, 3.9,, 16.4, 18.7, , 75.6, 102.2, 38.7, 8.8, 4.0, 1.3]/*,
+						markPoint : {
+							data : [
+								{name : '年最高', value : 102.2, xAxis: 7, yAxis: 103},
+								{name : '年最低', value : 1.3, xAxis: 11, yAxis: 1}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name : '平均值'}
+							]
+						}*/
+					},
+					{
+						name:'中国天气网移动端',
+						type:'bar',
+						data:[0.6, 1.9, , 6.4, 8.7, 20.7, 45.6, 72.2, 18.7, , 3.0, 0.3]/*,
+						markPoint : {
+							data : [
+								{name : '年最高', value : 72.2, xAxis: 7, yAxis: 73},
+								{name : '年最低', value : 0.3, xAxis: 11, yAxis: 0}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name : '平均值'}
+							]
+						}*/
+					}
+				]
+			};
+			
+
+			optionQuarter = {
+				title : {
+					text: '分媒介季度成本/利润分布图',
+					x:'center',
+					subtext: ''
+				},
+				tooltip : {
+					trigger: 'axis'
+				},
+				legend: {
+					x:'right',
+					y:'30',
+					data:['电视利润','电台利润','网站利润','WAP利润','电视成本','电台成本','网站成本','WAP成本','平均利润']
+				},
+				toolbox: {
+					show : true,
+					feature : {
+						dataView : {show: true, readOnly: false},
+						magicType : {show: true, type: ['line', 'bar']},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				xAxis : [
+					{
+						type : 'category',
+						data : ['第一季度','第二季度','第三季度','第四季度']
+					}
+				],
+				yAxis : [
+					{
+						type : 'value'
+					}
+				],
+				series : [
+					{
+						name:'平均利润',
+						type:'line',
+						data:[19.1,168.2,422.48,"-"]
+					},
+					{
+						name:'平均利润',
+						type:'line',
+						smooth:false,   //关键点，为true是不支持虚线，实线就用true
+					   itemStyle:{
+						   normal:{
+							   lineStyle:{
+								   width:2,
+								   type:'dotted'  //'dotted'虚线 'solid'实线
+							   }
+						   }
+					   }, 
+						data:["-","-",422.48,470.5]
+					},
+					{
+						name:'电视成本',
+						type:'bar',
+						data:[8, 35.6,125,53],
+						stack:'电视'
+					},
+					{
+						name:'电视利润',
+						type:'bar',
+						data:[43.9, 425.5,730.4,549.7],
+						markPoint : {
+							data : [
+								{type : 'max', name: '最大值'},
+								{type : 'min', name: '最小值'}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name: '平均值'}
+							]
+						},
+						stack:'电视'
+					},
+					{
+						name:'电台成本',
+						type:'bar',
+						data:[5.1,22.3,79,5.7],
+						stack:'电台'
+					},
+					{
+						name:'电台利润',
+						type:'bar',
+						data:[17.5,125.8,406.5,327.1],
+						markPoint : {
+							data : [
+								{name : '年最高', value : 406.5, xAxis: 2, yAxis: 407},
+								{name : '年最低', value : 17.5, xAxis: 0, yAxis: 18}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name : '平均值'}
+							]
+						},
+						stack:'电台'
+					},
+					{
+						name:'网站成本',
+						type:'bar',
+						data:[4.5,4.9,12.3,3],
+						stack:'网站'
+					},
+					{
+						name:'网站利润',
+						type:'bar',
+						data:[9.5,85.8,216.5,114.1],
+						markPoint : {
+							data : [
+								{name : '年最高', value : 216.5, xAxis: 2, yAxis: 217},
+								{name : '年最低', value : 9.5, xAxis: 0, yAxis: 10}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name : '平均值'}
+							]
+						},
+						stack:'网站'
+					},
+					{
+						name:'WAP成本',
+						type:'bar',
+						data:[0.4,3.8,16,2.3],
+						stack:'WAP'
+					},
+					{
+						name:'WAP利润',
+						type:'bar',
+						data:[5.5,35.8,136.5,111.1],
+						markPoint : {
+							data : [
+								{name : '年最高', value : 136.5, xAxis: 2, yAxis: 137},
+								{name : '年最低', value : 5.5, xAxis: 0, yAxis: 6}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name : '平均值'}
+							]
+						},
+						stack:'WAP'
+					}
+				]
+			};
+			//myChart2 = echarts.init(document.getElementById('main2'));
+			myChart1.setOption(option);
+			myChart2.setOption(optionQuarter);
+			
+
+			
+
+
+
+
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>

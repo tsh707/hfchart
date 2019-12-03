@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+
+    <body style="background-color:#FFFFFF">
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+		<!--div class="divCenter">福建省广告市场健康度一览</div-->
+		<div id="main" style="width:960px;height:340px;margin-top: 30px;align:left"></div>
+        
+		
+        <script type="text/javascript">
+            var dom = document.getElementById("main");
+			var myChart = echarts.init(dom);
+			var app = {};
+			option = null;
+			
+			app.title = '气泡图';
+
+			var data = [
+				[[1777,57.7,870601776,'上月','CCTV-1'],[5903,66.8,1311050527,'当月','CCTV-1']],				
+				[[31163,77.4,27662440,'上月','CCTV-2'],[43294,81.7,35939927,'当月','CCTV-2']],
+				[[28604,77,17096869,'上月','CCTV-7'],[44056,81.8,23968973,'当月','CCTV-7']],
+				[[1516,68,1154605773,'上月','CCTV-13'],[13334,76.9,1376048943,'当月','CCTV-13']],
+				[[13670,74.7,10582082,'上月','旅游卫视'],[21291,78.5,11389562,'当月','旅游卫视']],
+				[[28599,75,4986705,'上月','中国教育电视台'],[38923,80.8,5503457,'当月','中国教育电视台']],
+				[[29476,77.1,56943299,'上月','中国气象频道'],[37599,81.9,64395345,'当月','中国气象频道']],
+				[[31476,75.4,78958237,'上月','中央人民广播电台'],[44053,81.1,80688545,'当月','中央人民广播电台']],
+				[[28666,78.1,254830,'上月','中国天气网'],[42182,82.8,329425,'当月','中国天气网']],				
+				[[177,57.7,8706011,'上月','中国天气网移动端'],[26590,66.8,13110501,'当月','中国天气网移动端']]
+			];
+
+			option = {
+				backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
+					offset: 0,
+					color: '#f7f8fa'
+				}, {
+					offset: 1,
+					color: '#cdd0d5'
+				}]),
+				title: {
+					text: '上月 与 当月 各频道价格/销量 收益情况'
+				},
+				legend: {
+					right: 50,
+					top:320,
+					data: ['CCTV-1', 'CCTV-2','CCTV-7','CCTV-13','旅游卫视','教育电视台','气象频道','中央人民广播电台','天气网','天气网移动端']
+				},
+				xAxis: {
+					splitLine: {
+						lineStyle: {
+							type: 'dashed'
+						}
+					}
+				},
+				yAxis: {
+					splitLine: {
+						lineStyle: {
+							type: 'dashed'
+						}
+					},
+					scale: true
+				},
+				series: [{
+					name: 'CCTV-1',
+					data: data[0],
+					type: 'scatter',
+					symbolSize: function (data) {
+						return Math.sqrt(data[2]) / 5e2;
+					},
+					label: {
+						emphasis: {
+							show: true,
+							formatter: function (param) {
+								return param.data[3];
+							},
+							position: 'top'
+						}
+					},
+					itemStyle: {
+						normal: {
+							shadowBlur: 10,
+							shadowColor: 'rgba(120, 36, 50, 0.5)',
+							shadowOffsetY: 5,
+							color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+								offset: 0,
+								color: 'rgb(251, 118, 123)'
+							}, {
+								offset: 1,
+								color: 'rgb(204, 46, 72)'
+							}])
+						}
+					}
+				}, {
+					name: 'CCTV-2',
+					data: data[1],
+					type: 'scatter',
+					symbolSize: function (data) {
+						return Math.sqrt(data[2]) / 5e2;
+					},
+					label: {
+						emphasis: {
+							show: true,
+							formatter: function (param) {
+								return param.data[3];
+							},
+							position: 'top'
+						}
+					},
+					itemStyle: {
+						normal: {
+							shadowBlur: 10,
+							shadowColor: 'rgba(25, 100, 150, 0.5)',
+							shadowOffsetY: 5,
+							color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+								offset: 0,
+								color: 'rgb(129, 227, 238)'
+							}, {
+								offset: 1,
+								color: 'rgb(25, 183, 207)'
+							}])
+						}
+					}
+				}, {
+					name: 'CCTV-7',
+					data: data[2],
+					type: 'scatter',
+					symbolSize: function (data) {
+						return Math.sqrt(data[2]) / 5e2;
+					},
+					label: {
+						emphasis: {
+							show: true,
+							formatter: function (param) {
+								return param.data[3];
+							},
+							position: 'top'
+						}
+					},
+					itemStyle: {
+						normal: {
+							shadowBlur: 10,
+							shadowColor: 'rgba(25, 100, 150, 0.5)',
+							shadowOffsetY: 5,
+							color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+								offset: 0,
+								color: 'rgb(29, 27, 238)'
+							}, {
+								offset: 1,
+								color: 'rgb(25, 283, 207)'
+							}])
+						}
+					}
+				}, {
+					name: 'CCTV-13',
+					data: data[3],
+					type: 'scatter',
+					symbolSize: function (data) {
+						return Math.sqrt(data[2]) / 5e2;
+					},
+					label: {
+						emphasis: {
+							show: true,
+							formatter: function (param) {
+								return param.data[3];
+							},
+							position: 'top'
+						}
+					},
+					itemStyle: {
+						normal: {
+							shadowBlur: 10,
+							shadowColor: 'rgba(25, 100, 150, 0.5)',
+							shadowOffsetY: 5,
+							color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+								offset: 0,
+								color: 'rgb(229, 127, 238)'
+							}, {
+								offset: 1,
+								color: 'rgb(25, 183, 207)'
+							}])
+						}
+					}
+				}, {
+					name: '旅游卫视',
+					data: data[4],
+					type: 'scatter',
+					symbolSize: function (data) {
+						return Math.sqrt(data[2]) / 5e2;
+					},
+					label: {
+						emphasis: {
+							show: true,
+							formatter: function (param) {
+								return param.data[3];
+							},
+							position: 'top'
+						}
+					},
+					itemStyle: {
+						normal: {
+							shadowBlur: 10,
+							shadowColor: 'rgba(25, 100, 150, 0.5)',
+							shadowOffsetY: 5,
+							color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+								offset: 0,
+								color: 'rgb(89, 127, 138)'
+							}, {
+								offset: 1,
+								color: 'rgb(25, 183, 207)'
+							}])
+						}
+					}
+				}, {
+					name: '中国教育电视台',
+					data: data[5],
+					type: 'scatter',
+					symbolSize: function (data) {
+						return Math.sqrt(data[2]) / 5e2;
+					},
+					label: {
+						emphasis: {
+							show: true,
+							formatter: function (param) {
+								return param.data[3];
+							},
+							position: 'top'
+						}
+					},
+					itemStyle: {
+						normal: {
+							shadowBlur: 10,
+							shadowColor: 'rgba(25, 100, 150, 0.5)',
+							shadowOffsetY: 5,
+							color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+								offset: 0,
+								color: 'rgb(159, 157, 168)'
+							}, {
+								offset: 1,
+								color: 'rgb(25, 183, 207)'
+							}])
+						}
+					}
+				}, {
+					name: '气象频道',
+					data: data[6],
+					type: 'scatter',
+					symbolSize: function (data) {
+						return Math.sqrt(data[2]) / 5e2;
+					},
+					label: {
+						emphasis: {
+							show: true,
+							formatter: function (param) {
+								return param.data[3];
+							},
+							position: 'top'
+						}
+					},
+					itemStyle: {
+						normal: {
+							shadowBlur: 10,
+							shadowColor: 'rgba(25, 100, 150, 0.5)',
+							shadowOffsetY: 5,
+							color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+								offset: 0,
+								color: 'rgb(200, 166, 89)'
+							}, {
+								offset: 1,
+								color: 'rgb(25, 183, 207)'
+							}])
+						}
+					}
+				}, {
+					name: '中央人民广播电台',
+					data: data[7],
+					type: 'scatter',
+					symbolSize: function (data) {
+						return Math.sqrt(data[2]) / 5e2;
+					},
+					label: {
+						emphasis: {
+							show: true,
+							formatter: function (param) {
+								return param.data[3];
+							},
+							position: 'top'
+						}
+					},
+					itemStyle: {
+						normal: {
+							shadowBlur: 10,
+							shadowColor: 'rgba(25, 100, 150, 0.5)',
+							shadowOffsetY: 5,
+							color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+								offset: 0,
+								color: 'rgb(23, 23, 23)'
+							}, {
+								offset: 1,
+								color: 'rgb(25, 183, 207)'
+							}])
+						}
+					}
+				}, {
+					name: '天气网',
+					data: data[8],
+					type: 'scatter',
+					symbolSize: function (data) {
+						return Math.sqrt(data[2]) / 5e2;
+					},
+					label: {
+						emphasis: {
+							show: true,
+							formatter: function (param) {
+								return param.data[3];
+							},
+							position: 'top'
+						}
+					},
+					itemStyle: {
+						normal: {
+							shadowBlur: 10,
+							shadowColor: 'rgba(25, 100, 150, 0.5)',
+							shadowOffsetY: 5,
+							color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+								offset: 0,
+								color: 'rgb(125, 125, 125)'
+							}, {
+								offset: 1,
+								color: 'rgb(25, 183, 207)'
+							}])
+						}
+					}
+				}, {
+					name: '天气网移动端',
+					data: data[9],
+					type: 'scatter',
+					symbolSize: function (data) {
+						return Math.sqrt(data[2]) / 5e2;
+					},
+					label: {
+						emphasis: {
+							show: true,
+							formatter: function (param) {
+								return param.data[3];
+							},
+							position: 'top'
+						}
+					},
+					itemStyle: {
+						normal: {
+							shadowBlur: 10,
+							shadowColor: 'rgba(25, 100, 150, 0.5)',
+							shadowOffsetY: 5,
+							color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+								offset: 0,
+								color: 'rgb(213, 123, 222)'
+							}, {
+								offset: 1,
+								color: 'rgb(25, 183, 207)'
+							}])
+						}
+					}
+				}]
+			};
+
+			if (option && typeof option === "object") {
+				myChart.clear();
+				myChart.resize();
+				myChart.setOption(option,true);
+			};
+			
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>

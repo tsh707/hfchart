@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+
+    <body >
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+		<!--div class="divCenter">福建省广告市场健康度一览</div-->
+		<table>
+			<tr>
+				<td colspan=2><div id="main" style="width:700px;height:300px;margin-top: 10px;align:left"></div></td>
+			</tr>
+		</table>
+        
+		
+        <script type="text/javascript">
+            
+			
+			var chartPerson = echarts.init(document.getElementById('main'));
+			optionPerson = {
+				title : {
+					text: '各媒介资源饱和度分析',
+					//x:'center',
+					subtext: ''
+				},
+				tooltip : {
+					trigger: 'axis',
+					axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+						type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				legend: {
+					data:['完成率', '未完成比例'],
+					y: 'bottom'
+				},
+				calculable : true,
+				xAxis : [
+					{
+						type : 'category',
+						data : ['电视','广播','网站','手机']
+					}
+				],
+				yAxis : [
+					{
+						type : 'value',
+						axisLabel: {
+							formatter: '{value} %'
+						}
+					}
+				],
+				series : [
+					{
+						name:'饱和度',
+						type:'bar',
+						stack: '总量',
+						itemStyle : { normal: {color:'#0099cc',label : {show: true, position: 'inside',formatter:'{c}%'}}},
+						data:[58,82,68,10],
+						markLine : {
+							itemStyle:{
+							   normal:{
+								   color:'#333399',
+								   lineStyle:{
+									   width:2,
+									   type:'dotted'  //'dotted'虚线 'solid'实线
+								   }
+							   }
+						   }, 
+							data : [
+								{type : 'average', name: '平均值'}
+							]
+						}
+					}
+				]
+			};
+			chartPerson.setOption(optionPerson);
+			
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>

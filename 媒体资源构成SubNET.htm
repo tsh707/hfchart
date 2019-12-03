@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+	<table>
+		<tr><td colspan=3></td></tr>
+		<tr>
+			<td><div id="main2" style="width:330px;height:240px;margin-top:-0px">aa</div></td>
+			<td><div id="main3" style="width:330px;height:240px;margin-top:-0px">aa</div></td>
+        </tr>
+	</table>
+        <script type="text/javascript">
+
+			var myChart2 = echarts.init(document.getElementById("main2"));
+			var myChart3 = echarts.init(document.getElementById("main3"));
+			var app = {};
+			app.title = '坐标轴刻度与标签对齐';
+			
+			option2 = {
+				color: ['#3398DB'],
+				tooltip : {
+					trigger: 'axis',
+					axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+						type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					containLabel: true
+				},
+				xAxis : [
+					{
+						axisLabel: {
+							rotate: 30,
+						},
+						type : 'category',
+						data : ['中国天气网', '腾讯', '百度', '人民网','新华网','今日头条','一点资讯','中国网络电视台'],
+						axisTick: {
+							alignWithLabel: true
+						}
+					}
+				],
+				yAxis : [
+					{
+						type : 'value'
+					}
+				],
+				series : [
+					{
+						name:'资源量',
+						type:'bar',
+						barWidth: '60%',
+						data:[37,55, 23, 48, 55,26,62,65]
+					}
+				]
+			};
+			
+			
+			option3 = {
+				color: ['#3398DB'],
+				tooltip : {
+					trigger: 'axis',
+					axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+						type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					containLabel: true
+				},
+				xAxis : [
+					{
+						axisLabel: {
+							rotate: 30,
+						},
+						type : 'category',
+						data : ['通栏', '全屏', '对联', '焦点图','导航条','贴片','信息流'],
+						axisTick: {
+							alignWithLabel: true
+						}
+					}
+				],
+				yAxis : [
+					{
+						type : 'value'
+					}
+				],
+				series : [
+					{
+						name:'资源量',
+						type:'bar',
+						barWidth: '60%',
+						data:[30, 10, 4,3,12,21,7,32]
+					}
+				]
+			};
+
+			if (option2 && typeof option2 === "object") {
+				
+				myChart2.clear();
+				myChart2.resize();
+				myChart2.setOption(option2,true);
+				
+				myChart3.clear();
+				myChart3.resize();
+				myChart3.setOption(option3,true);
+			};
+
+
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>

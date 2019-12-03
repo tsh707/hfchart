@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div class="box">
+        <div class="one">
+
+            <div id="main1" style="width:1260px;height:470px"></div>
+        </div>
+
+    </div>
+
+    <!-- ECharts单文件引入 -->
+    
+    <script type="text/javascript">
+
+                var myChart1 = echarts.init(document.getElementById("main1"));
+              
+				var actualData1 = [ 8, 9, 10, 16, 15, 7]; //实际值
+				var warningData1 = [ 10, 10, 10, 10, 10, 10]; //预警值
+				
+				var actualData2 = [ 28, 19, 10, 26, 25, 17]; //实际值
+				var warningData2 = [ 20, 20, 20, 20, 20, 20]; //预警值
+				
+				var actualData3 = [ 8, 21, 10, 22, 7, 10]; //实际值
+				var warningData3 = [ 15, 15, 15, 15, 15, 15]; //预警值
+				
+				var actualData4 = [ 16, 12, 13, 15, 7, 8]; //实际值
+				var warningData4 = [ 18, 18, 18, 18, 18, 18]; //预警值
+				
+				var actualData5 = [ 9, 5, 5, 5, 7, 10]; //实际值
+				var warningData5 = [ 8, 8, 8, 8, 8, 8]; //预警值
+				
+				option = {
+					tooltip: {
+						trigger: 'axis',
+					},
+					legend: {
+						data: ['账户A', '账户A上限','账户B', '账户B上限','账户C', '账户C上限','账户D', '账户D上限','账户E', '账户E上限'],
+						selected: {
+							'账户B': false,
+							'账户B上限': false,
+							'账户C': false,
+							'账户C上限': false,
+							'账户D': false,
+							'账户D上限': false,
+							'账户E': false,
+							'账户E上限':false
+						}
+
+					},
+					grid: [{
+						top: '10%',
+						left: '30%',
+						width: '50%',
+						height: '40%',
+						containLabel: false,
+					}],
+					xAxis: [{
+						type: 'category',
+						name: '月份',
+						data: [ '6月', '7月', '8月', '9月', '10月', '11月'],
+					}],
+					yAxis: [{
+						type: 'value',
+						name: '金额',
+					}],
+					series: [{
+							name: '账户A',
+							type: 'bar',
+							//barWidth: 40,
+							itemStyle: {
+								normal: { //这里必须加normal,否者不显示夜色变化
+									color: function(params) {//超过预警值显示红色
+										if (actualData1[params.dataIndex] > warningData1[params.dataIndex]) {
+											return '#FF3300';
+										} else {
+											return '#FF9900';
+										}
+									}
+								}
+							},
+							data: actualData1
+						},
+						{
+							name: '账户A上限',
+							type: 'line',
+							data: warningData1,
+							itemStyle: {
+								normal: {
+									color: '#FF9900'
+								}
+							}
+						},
+						{
+							name: '账户B',
+							type: 'bar',
+							//barWidth: 40,
+							itemStyle: {
+								normal: { //这里必须加normal,否者不显示夜色变化
+									color: function(params) {//超过预警值显示红色
+										if (actualData2[params.dataIndex] > warningData2[params.dataIndex]) {
+											return '#99FF00';
+										} else {
+											return '#00FF66';
+										}
+									}
+								}
+							},
+							data: actualData2
+						},
+						{
+							name: '账户B上限',
+							type: 'line',
+							data: warningData2,
+							itemStyle: {
+								normal: {
+									color: '#00FF66'
+								}
+							}
+						},
+						{
+							name: '账户C',
+							type: 'bar',
+							//barWidth: 40,
+							itemStyle: {
+								normal: { //这里必须加normal,否者不显示夜色变化
+									color: function(params) {//超过预警值显示红色
+										if (actualData3[params.dataIndex] > warningData3[params.dataIndex]) {
+											return '#0000FF';
+										} else {
+											return '#00CCFF';
+										}
+									}
+								}
+							},
+							data: actualData3
+						},
+						{
+							name: '账户C上限',
+							type: 'line',
+							data: warningData3,
+							itemStyle: {
+								normal: {
+									color: '#00CCFF'
+								}
+							}
+						},
+						{
+							name: '账户D',
+							type: 'bar',
+							//barWidth: 40,
+							itemStyle: {
+								normal: { //这里必须加normal,否者不显示夜色变化
+									color: function(params) {//超过预警值显示红色
+										if (actualData4[params.dataIndex] > warningData4[params.dataIndex]) {
+											return '#3300FF';
+										} else {
+											return '#0099FF';
+										}
+									}
+								}
+							},
+							data: actualData4
+						},
+						{
+							name: '账户D上限',
+							type: 'line',
+							data: warningData4,
+							itemStyle: {
+								normal: {
+									color: '#0099FF'
+								}
+							}
+						},
+						{
+							name: '账户E',
+							type: 'bar',
+							//barWidth: 40,
+							itemStyle: {
+								normal: { //这里必须加normal,否者不显示夜色变化
+									color: function(params) {//超过预警值显示红色
+										if (actualData5[params.dataIndex] > warningData5[params.dataIndex]) {
+											return '#FF0066';
+										} else {
+											return '#FF00FF';
+										}
+									}
+								}
+							},
+							data: actualData5
+						},
+						{
+							name: '账户E上限',
+							type: 'line',
+							data: warningData5,
+							itemStyle: {
+								normal: {
+									color: '#FF00FF'
+								}
+							}
+						}
+					]
+				};
+
+
+
+            // 为echarts对象加载数据
+            myChart1.setOption(option);
+
+    </script>
+</body>

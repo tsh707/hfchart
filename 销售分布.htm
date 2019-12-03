@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+	<div id="main1" style="width:960px;height:350px">aa</div>
+    <div id="main2" style="width:960px;height:270px">aa</div>
+        
+		
+        <script type="text/javascript">
+		
+			var dom1 = document.getElementById("main1");
+			var myChart1 = echarts.init(dom1);
+			var dom2 = document.getElementById("main2");
+			var myChart2 = echarts.init(dom2);
+			var app = {};
+			app.title = '销售分布';			
+			
+			option = {
+				tooltip : {
+					trigger: 'axis'
+				},
+				title : {
+					text: 'CCTV-1资源销售分布情况',
+					x:'center'
+				},
+				toolbox: {
+					show : true,
+					y: 'bottom',
+					feature : {
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
+						magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				legend: {
+					y:'30px',
+					data:['字幕条','栏目冠名','预警信息冠名','三通版无声硬广','城市景观广告','特级城市','一级城市','二级城市','三级城市']
+				},
+				xAxis : [
+					{
+						type : 'category',
+						splitLine : {show : false},
+						data : ['4月','5月','6月','7月','8月','9月','10月']
+					}
+				],
+				yAxis : [
+					{
+						type : 'value',
+						position: 'right'
+					}
+				],
+				series : [
+					{
+						name:'字幕条',
+						type:'bar',
+						data:[320, 332, 301, 334, 390, 330, 320]
+					},
+					{
+						name:'栏目冠名',
+						type:'bar',
+						tooltip : {trigger: 'item'},
+						stack: '广告',
+						data:[120, 132, 101, 134, 90, 230, 210]
+					},
+					{
+						name:'预警信息冠名',
+						type:'bar',
+						tooltip : {trigger: 'item'},
+						stack: '广告',
+						data:[220, 182, 191, 234, 290, 330, 310]
+					},
+					{
+						name:'三通版无声硬广',
+						type:'bar',
+						tooltip : {trigger: 'item'},
+						stack: '广告',
+						data:[150, 232, 201, 154, 190, 330, 410]
+					},
+					{
+						name:'城市景观广告',
+						type:'line',
+						data:[862, 1018, 964, 1026, 1679, 1600, 1570]
+					},
+
+					{
+						name:'城市景观细分',
+						type:'pie',
+						tooltip : {
+							trigger: 'item',
+							formatter: '{a} <br/>{b} : {c} ({d}%)'
+						},
+						center: [160,130],
+						radius : [0, 50],
+						itemStyle :　{
+							normal : {
+								labelLine : {
+									length : 20
+								}
+							}
+						},
+						data:[
+							{value:1048, name:'特级城市'},
+							{value:251, name:'一级城市'},
+							{value:147, name:'二级城市'},
+							{value:102, name:'三级城市'}
+						]
+					}
+				]
+			};
+
+			//myChart2 = echarts.init(document.getElementById('main2'));
+			myChart1.setOption(option);
+
+			
+
+			
+
+
+
+
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>
