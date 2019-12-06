@@ -1,0 +1,649 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>华风集团广告资源可视化平台</title>
+		<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+		<style>
+			.divCenter{
+                position: absolute;left: 10%;margin-top: -10px;margin-left: -20px;height: 2000px;
+            }
+		</style>
+    </head>
+	<table>
+		
+		<!--tr>
+			<td colspan=2><div id="mainYInOut" style="width:1000px;height:370px;margin-top:30px">aa</div></td>
+		</tr>
+		<tr>
+			<td colspan=2><div id="mainYInOutRate" style="width:1000px;height:370px;margin-top:30px">aa</div></td>
+		</tr-->
+		<tr style="height:20px">
+			<td colspan=2></td>
+		</tr>
+		<!--tr>
+			<td colspan=2 style="color:blue">当月&nbsp&nbsp&nbsp&nbsp近2月&nbsp&nbsp&nbsp&nbsp近3月&nbsp&nbsp&nbsp&nbsp近半年&nbsp&nbsp&nbsp&nbsp近1年&nbsp&nbsp&nbsp&nbsp自定义</td>
+		</tr-->
+		<tr>
+			<td ><div id="mainCurInOut" style="width:400px;height:370px;margin-top:30px">aa</div></td>
+			<td ><div id="mainCurInOutCost" style="width:400px;height:370px;margin-top:30px">aa</div></td>
+		</tr>
+		<!--tr><td colspan=2><p></p></td></tr-->
+		<tr>
+			<td colspan=2>
+				<table>
+					<tr>
+						<td><div id="mainIn" style="width:300px;height:370px;margin-top:30px">aa</div></td>
+						<td><div id="mainOut" style="width:300px;height:370px;margin-top:30px">aa</div></td>
+						<td><div id="mainKeep" style="width:300px;height:370px;margin-top:30px">aa</div></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td><div id="mainCategory" style="width:400px;height:370px">aa</div></td>
+			<td><div id="mainAdviser" style="width:400px;height:370px">aa</div></td>
+		</tr>
+	</table>
+	
+   
+        
+		
+        <script type="text/javascript">
+
+			var myChartCategory = echarts.init(document.getElementById("mainCategory"));
+			var myChartAdviser = echarts.init(document.getElementById("mainAdviser"));
+			//var myChartYInOut = echarts.init(document.getElementById("mainYInOut"));
+			//var myChartYInOutRate = echarts.init(document.getElementById("mainYInOutRate"));
+			var myChartCurInOut = echarts.init(document.getElementById("mainCurInOut"));
+			var myChartCurInOutCost = echarts.init(document.getElementById("mainCurInOutCost"));
+			var myChartIn = echarts.init(document.getElementById("mainIn"));
+			var myChartOut = echarts.init(document.getElementById("mainOut"));
+			var myChartKeep = echarts.init(document.getElementById("mainKeep"));
+			
+			
+
+			var app = {};
+			app.title = '广告主行业分布';			
+			
+			var idx = 1;
+			optionCategory = {
+				title : {
+					text: '广告主行业分布',
+					subtext: '',
+					x:'left'
+				},
+				tooltip : {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					x:'center',
+					y : 'bottom',
+					data:['交通类','食品','饮料','邮电通讯','娱乐及休闲','其他']
+				},
+				toolbox: {
+					show : true,
+					feature : {
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
+						magicType : {
+							show: true, 
+							type: ['pie', 'funnel'],
+							option: {
+								funnel: {
+									x: '25%',
+									width: '50%',
+									funnelAlign: 'left',
+									max: 1548
+								}
+							}
+						},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				series : [
+					{
+						name:'行业',
+						type:'pie',
+						//radius : '55%',
+						//center: ['5%', '5%'],
+						data:[
+							{value:335, name:'交通类'},
+							{value:310, name:'食品'},
+							{value:1548, name:'饮料'},
+							{value:135, name:'邮电通讯'},
+							{value:234, name:'娱乐及休闲'},
+							{value:157, name:'其他'}
+						]
+					}
+				]
+			};
+			
+			optionAdviser = {
+				title : {
+					text: '广告主分布',
+					subtext: '',
+					x:'left'
+				},
+				tooltip : {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					x:'center',
+					y : 'bottom',
+					data:['凉露','双汇','蒙牛','福建铁观音','加多宝','麦当劳','上海大众','大运摩托','其他']
+				},
+				toolbox: {
+					show : true,
+					feature : {
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
+						magicType : {
+							show: true, 
+							type: ['pie', 'funnel'],
+							option: {
+								funnel: {
+									x: '25%',
+									width: '50%',
+									funnelAlign: 'left',
+									max: 1548
+								}
+							}
+						},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				series : [
+					{
+						name:'行业',
+						type:'pie',
+						//radius : '55%',
+						//center: ['5%', '5%'],
+						data:[
+							{value:65, name:'凉露'},
+							{value:156, name:'双汇'},
+							{value:88, name:'蒙牛'},
+							{value:22, name:'福建铁观音'},
+							{value:321, name:'加多宝'},
+							{value:94,name:'上海大众'},
+							{value:28,name:'大运摩托'},
+							{value:55,name:'其他'},
+						]
+					}
+				]
+			};
+			
+			optionYInOut = {
+			title : {
+				text: '客户月度流入流出关系图',
+				subtext: '',
+				x: 'center',
+				align: 'right'
+			},
+			grid: {
+				bottom: 80
+			},
+			toolbox: {
+				show:false,
+				feature: {
+					dataZoom: {
+						yAxisIndex: 'none'
+					},
+					restore: {},
+					saveAsImage: {}
+				}
+			},
+			tooltip : {
+				trigger: 'axis',
+				axisPointer: {
+					type: 'cross',
+					animation: false,
+					label: {
+						backgroundColor: '#505765'
+					}
+				}
+			},
+			legend: {
+				data:['流失量','新增量'],
+				x: 'center',
+				y:'bottom'
+			},
+			dataZoom: [
+				{
+					show: true,
+					realtime: true,
+					start: 1,
+					end: 185
+				},
+				{
+					type: 'inside',
+					realtime: true,
+					start: 1,
+					end: 185
+				}
+			],
+			xAxis : [
+				{
+					type : 'category',
+					boundaryGap : false,
+					axisLine: {onZero: false},
+					data : [
+						'2017年10月',
+						'2017年11月',
+						'2017年12月',
+						'2018年1月',
+						'2018年2月',
+						'2018年3月',
+						'2018年4月',
+						'2018年5月',
+						'2018年6月',
+						'2018年7月',
+						'2018年8月',
+						'2018年9月'
+					].map(function (str) {
+						return str.replace(' ', '\n')
+					})
+				}
+			],
+			yAxis: [
+				{
+					name: '流失量(个)',
+					type: 'value',
+					max: 100
+				},
+				{
+					name: '新增量(个)',
+					nameLocation: 'start',
+					max: 100,
+					type: 'value',
+					inverse: true
+				}
+			],
+			series: [
+				{
+					name:'流失量',
+					type:'line',
+					animation: false,
+					areaStyle: {
+					},
+					lineStyle: {
+						width: 1
+					},
+					markArea: {
+						silent: true,
+						
+					},
+					data:[
+						23,11,17,16,8,0,2,65,7,22,17,15
+					]
+				},
+				{
+					name:'新增量',
+					type:'line',
+					yAxisIndex:1,
+					animation: false,
+					areaStyle: {
+					},
+					lineStyle: {
+						width: 1
+					},
+					markArea: {
+						silent: true,
+						
+					},
+					data: [
+						9,12,22,21,16,17,5,75,7,31,12,16
+					]
+				}
+			]
+		};
+		
+		
+		optionYInOutRate = {
+				title: {
+					text: '客户新增/流失比分析',
+					//x:'center',
+					subtext: '数据纯属虚构'
+				},
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: {
+						type: 'cross',
+						crossStyle: {
+							color: '#999'
+						}
+					}
+				},
+				toolbox: {
+					feature: {
+						dataView: {show: true, readOnly: false},
+						magicType: {show: true, type: ['line', 'bar']},
+						restore: {show: true},
+						saveAsImage: {show: true}
+					}
+				},
+				legend: {
+					y: 'bottom',
+					data:['新增/流失比']
+				},
+				xAxis: [
+					{
+						type: 'category',
+						axisLine: {onZero: true},
+						data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+						axisPointer: {
+							type: 'shadow'
+						}
+					}
+				],
+				yAxis: [
+					{
+						type: 'value',
+						name: '新增/流失比',
+						min: 0,
+						max: 100,						
+						axisLabel: {
+							formatter: '{value} '
+						}
+					}
+				],
+				series: [
+					{
+						name:'比率',
+						type:'line',
+						
+						data:[66.67,95.00,74.49,38.57,53.29,16.17,91.80,19.62,79.90,8.65,68.00,48.44]
+					}
+				]
+			};
+
+			
+			
+
+			optionCurInOut = {
+				title : {
+					text: '当月广告主流入流出分布(数量)',
+					subtext: '',
+					x:'left'
+				},
+				tooltip : {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					x:'center',
+					y : 'bottom',
+					data:['新增','保有','流失']
+				},
+				toolbox: {
+					show : true,
+					feature : {
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
+						magicType : {
+							show: true, 
+							type: ['pie', 'funnel'],
+							option: {
+								funnel: {
+									x: '25%',
+									width: '50%',
+									funnelAlign: 'left',
+									max: 1548
+								}
+							}
+						},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				series : [
+					{
+						name:'行业',
+						type:'pie',
+						//radius : '55%',
+						//center: ['5%', '5%'],
+						data:[
+							{value:5, name:'新增'},
+							{value:25, name:'保有'},
+							{value:3, name:'流失'}
+						]
+					}
+				]
+			};
+			
+			
+			optionCurInOutCost = {
+				title : {
+					text: '当月广告主流入流出分布(金额)',
+					subtext: '',
+					x:'left'
+				},
+				tooltip : {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					x:'center',
+					y : 'bottom',
+					data:['新增','保有','流失']
+				},
+				toolbox: {
+					show : true,
+					feature : {
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
+						magicType : {
+							show: true, 
+							type: ['pie', 'funnel'],
+							option: {
+								funnel: {
+									x: '25%',
+									width: '50%',
+									funnelAlign: 'left',
+									max: 1548
+								}
+							}
+						},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				series : [
+					{
+						name:'行业',
+						type:'pie',
+						//radius : '55%',
+						//center: ['5%', '5%'],
+						data:[
+							{value:700, name:'新增'},
+							{value:3600, name:'保有'},
+							{value:310, name:'流失'}
+						]
+					}
+				]
+			};
+			
+			optionIn = {
+				title : {
+					text: '当月新增广告主类型分布',
+					subtext: '',
+					x:'left'
+				},
+				tooltip : {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					x:'center',
+					y : 'bottom',
+					data:['饮料','交通','邮电通讯']
+				},
+				toolbox: {
+					show : true,
+					feature : {
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
+						magicType : {
+							show: true, 
+							type: ['pie', 'funnel'],
+							option: {
+								funnel: {
+									x: '25%',
+									width: '50%',
+									funnelAlign: 'left',
+									max: 1548
+								}
+							}
+						},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				series : [
+					{
+						name:'行业',
+						type:'pie',
+						//radius : '55%',
+						//center: ['5%', '5%'],
+						data:[
+							{value:2, name:'饮料'},
+							{value:2, name:'交通'},
+							{value:1, name:'邮电通讯'}
+						]
+					}
+				]
+			};
+			
+			optionOut = {
+				title : {
+					text: '当月流失广告主类型分布',
+					subtext: '',
+					x:'left'
+				},
+				tooltip : {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					x:'center',
+					y : 'bottom',
+					data:['饮料','食品']
+				},
+				toolbox: {
+					show : true,
+					feature : {
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
+						magicType : {
+							show: true, 
+							type: ['pie', 'funnel'],
+							option: {
+								funnel: {
+									x: '25%',
+									width: '50%',
+									funnelAlign: 'left',
+									max: 1548
+								}
+							}
+						},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				series : [
+					{
+						name:'行业',
+						type:'pie',
+						//radius : '55%',
+						//center: ['5%', '5%'],
+						data:[
+							{value:1, name:'饮料'},
+							{value:1, name:'食品'}
+						]
+					}
+				]
+			};
+			
+			optionKeep = {
+				title : {
+					text: '当月保有广告主类型分布',
+					subtext: '',
+					x:'left'
+				},
+				tooltip : {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					x:'center',
+					y : 'bottom',
+					data:['交通类','饮料','邮电通讯','娱乐及休闲']
+				},
+				toolbox: {
+					show : true,
+					feature : {
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
+						magicType : {
+							show: true, 
+							type: ['pie', 'funnel'],
+							option: {
+								funnel: {
+									x: '25%',
+									width: '50%',
+									funnelAlign: 'left',
+									max: 1548
+								}
+							}
+						},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				series : [
+					{
+						name:'行业',
+						type:'pie',
+						//radius : '55%',
+						//center: ['5%', '5%'],
+						data:[
+							{value:6, name:'交通类'},
+							{value:4, name:'饮料'},
+							{value:8, name:'邮电通讯'},
+							{value:4, name:'娱乐及休闲'},
+							{value:3, name:'其他'}
+						]
+					}
+				]
+			};
+			
+			myChartCategory.setOption(optionCategory);
+			myChartAdviser.setOption(optionAdviser);
+			//myChartYInOut.setOption(optionYInOut);
+			//myChartYInOutRate.setOption(optionYInOutRate);
+			myChartCurInOut.setOption(optionCurInOut);
+			myChartCurInOutCost.setOption(optionCurInOutCost);
+			myChartIn.setOption(optionIn);
+			myChartOut.setOption(optionOut);
+			myChartKeep.setOption(optionKeep);
+
+
+        </script>
+		<!--div><a href="#" onclick="SetVal()">下一月</a></div-->
+    </body>
+
+</html>
