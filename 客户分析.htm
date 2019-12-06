@@ -18,6 +18,9 @@
 		<tr>
 			<td colspan=2><div id="mainYInOut" style="width:1000px;height:370px;margin-top:30px">aa</div></td>
 		</tr>
+		<tr>
+			<td colspan=2><div id="mainYInOutRate" style="width:1000px;height:370px;margin-top:30px">aa</div></td>
+		</tr>
 		<tr style="height:20px">
 			<td colspan=2></td>
 		</tr>
@@ -54,6 +57,7 @@
 			var myChartCategory = echarts.init(document.getElementById("mainCategory"));
 			var myChartAdviser = echarts.init(document.getElementById("mainAdviser"));
 			var myChartYInOut = echarts.init(document.getElementById("mainYInOut"));
+			var myChartYInOutRate = echarts.init(document.getElementById("mainYInOutRate"));
 			var myChartCurInOut = echarts.init(document.getElementById("mainCurInOut"));
 			var myChartCurInOutCost = echarts.init(document.getElementById("mainCurInOutCost"));
 			var myChartIn = echarts.init(document.getElementById("mainIn"));
@@ -302,6 +306,68 @@
 				}
 			]
 		};
+		
+		
+		optionYInOutRate = {
+				title: {
+					text: '客户新增/流失比分析',
+					//x:'center',
+					subtext: '数据纯属虚构'
+				},
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: {
+						type: 'cross',
+						crossStyle: {
+							color: '#999'
+						}
+					}
+				},
+				toolbox: {
+					feature: {
+						dataView: {show: true, readOnly: false},
+						magicType: {show: true, type: ['line', 'bar']},
+						restore: {show: true},
+						saveAsImage: {show: true}
+					}
+				},
+				legend: {
+					y: 'bottom',
+					data:['新增/流失比']
+				},
+				xAxis: [
+					{
+						type: 'category',
+						axisLine: {onZero: true},
+						data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+						axisPointer: {
+							type: 'shadow'
+						}
+					}
+				],
+				yAxis: [
+					{
+						type: 'value',
+						name: '新增/流失比',
+						min: 0,
+						max: 100,						
+						axisLabel: {
+							formatter: '{value} '
+						}
+					}
+				],
+				series: [
+					{
+						name:'比率',
+						type:'line',
+						
+						data:[66.67,95.00,74.49,38.57,53.29,16.17,91.80,19.62,79.90,8.65,68.00,48.44]
+					}
+				]
+			};
+
+			
+			
 
 			optionCurInOut = {
 				title : {
@@ -568,6 +634,7 @@
 			myChartCategory.setOption(optionCategory);
 			myChartAdviser.setOption(optionAdviser);
 			myChartYInOut.setOption(optionYInOut);
+			myChartYInOutRate.setOption(optionYInOutRate);
 			myChartCurInOut.setOption(optionCurInOut);
 			myChartCurInOutCost.setOption(optionCurInOutCost);
 			myChartIn.setOption(optionIn);

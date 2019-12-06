@@ -19,9 +19,15 @@
 	<table>
 		<tr>
 			<td><div id="mainSaleType" style="width:490px;height:350px;margin-top:30px"></div></td>
-			<td><div id="mainMMedium" style="width:490px;height:350px;margin-top:30px"></div></td>			
+			<td><div id="mainSaleStructure" style="width:490px;height:350px;margin-top:30px"></div></td>			
+		</tr>
+		<tr>
+			<td><div id="mainMMedium" style="width:490px;height:350px;margin-top:30px"></div></td>
+			<td><div id="mainContract" style="width:490px;height:350px;margin-top:30px"></div></td>
 		</tr>
 	</table>
+	
+	
 	<div id="mainAccount" style="width:960px;height:350px;margin-top:30px"></div>
 	
 	
@@ -32,6 +38,8 @@
 			var myChartQMedium = echarts.init(document.getElementById("mainQMedium"));
 			var myChartMMedium = echarts.init(document.getElementById("mainMMedium"));
 			var myChartSaleType = echarts.init(document.getElementById("mainSaleType"));
+			var myChartSaleStructure = echarts.init(document.getElementById("mainSaleStructure"));
+			var myChartContract = echarts.init(document.getElementById("mainContract"));
 			var myChartAccount = echarts.init(document.getElementById("mainAccount"));
 			var app = {};
 			app.title = '销售分布';			
@@ -353,7 +361,7 @@
 
 			optionMMedium = {
 					title: {
-						text: '媒介分布分析',
+						text: '产品营销方式分析',
 						subtext: '虚构数据',
 						left: 'center'
 					},
@@ -372,7 +380,7 @@
 						{
 							type: 'pie',
 							radius : '55%',
-							center: ['40%', '40%'],
+							center: ['40%', '50%'],
 							selectedMode: 'single',
 							data:[
 								{
@@ -489,9 +497,9 @@
 				
 			optionSaleType = {
 					title: {
-						text: '营销渠道分析',
+						text: '自有媒体营销渠道分析',
 						subtext: '虚构数据',
-						left: 'center'
+						left: 'left'
 					},
 					tooltip : {
 						trigger: 'item',
@@ -512,7 +520,7 @@
 							selectedMode: 'single',
 							data:[
 								{
-									value:548,
+									value:256,
 									name: '关联营销',
 									label: {
 										normal: {
@@ -520,10 +528,12 @@
 												'{title|{b}}{abg|}',
 												'  {weatherHead|单位}{valueHead|销售额}{rateHead|占比}',
 												'{hr|}',
-												'  {北京局}{value|202}{rate|55.3%}',
-												'  {河北局}{value|142}{rate|38.9%}',
-												'  {江苏局}{value|21}{rate|5.8%}',
-												'  {陕西局}{value|21}{rate|5.8%}'
+												'  {北京局}{value|89}{rate|34.8%}',
+												'  {河北局}{value|73}{rate|38.9%}',
+												'  {江苏局}{value|35}{rate|28.5%}',
+												'  {陕西局}{value|22}{rate|8.6%}',
+												'  {安徽局}{value|20}{rate|7.8%}',
+												'  {四川局}{value|17}{rate|6.6%}'
 											].join('\n'),
 											backgroundColor: '#eee',
 											borderColor: '#777',
@@ -618,24 +628,208 @@
 						}
 					]
 				};
+				
+			optionContract = {
+				title : {
+					text: '合同回款分析',
+					subtext: '',
+					x:'left'
+				},
+				tooltip : {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					x:'center',
+					y : 'bottom',
+					data:['已回款','逾期未回款','常规未回款']
+				},
+				toolbox: {
+					show : true,
+					feature : {
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
+						magicType : {
+							show: true, 
+							type: ['pie', 'funnel'],
+							option: {
+								funnel: {
+									x: '25%',
+									width: '50%',
+									funnelAlign: 'left',
+									max: 1548
+								}
+							}
+						},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				series : [
+					{
+						name:'行业',
+						type:'pie',
+						//radius : '55%',
+						//center: ['5%', '5%'],
+						data:[
+							{value:700, name:'已回款'},
+							{value:65, name:'逾期未回款'},
+							{value:870, name:'常规未回款'}
+						]
+					}
+				]
+			}
+				
+			optionSaleStructure = {
+					title: {
+						text: '资源销售分布',
+						subtext: '虚构数据',
+						left: 'left'
+					},
+					tooltip : {
+						trigger: 'item',
+						formatter: "{a} <br/>{b} : {c} ({d}%)"
+					},
+					legend: {
+						// orient: 'vertical',
+						// top: 'middle',
+						bottom: 10,
+						left: 'center',
+						data: ['本单位资源', '共享资源']
+					},
+					series : [
+						{
+							type: 'pie',
+							radius : '55%',
+							center: ['40%', '40%'],
+							selectedMode: 'single',
+							data:[
+								{
+									value:548,
+									name: '资源单位',
+									label: {
+										normal: {
+											formatter: [
+												'{title|{b}}{abg|}',
+												'  {weatherHead|单位}{valueHead|销售额}{rateHead|占比}',
+												'{hr|}',
+												'  {北京局}{value|202}{rate|55.3%}',
+												'  {河北局}{value|142}{rate|38.9%}',
+												'  {江苏局}{value|21}{rate|5.8%}',
+												'  {陕西局}{value|21}{rate|5.8%}'
+											].join('\n'),
+											backgroundColor: '#eee',
+											borderColor: '#777',
+											borderWidth: 1,
+											borderRadius: 4,
+											rich: {
+												title: {
+													color: '#eee',
+													align: 'center'
+												},
+												abg: {
+													backgroundColor: '#333',
+													width: '100%',
+													align: 'right',
+													height: 25,
+													borderRadius: [4, 4, 0, 0]
+												},
+												TV: {
+													height: 30,
+													align: 'left',
+													backgroundColor: {
+														image: weatherIcons.TV
+													}
+												},
+												RD: {
+													height: 30,
+													align: 'left',
+													backgroundColor: {
+														image: weatherIcons.RD
+													}
+												},
+												Net: {
+													height: 30,
+													align: 'left',
+													backgroundColor: {
+														image: weatherIcons.Net
+													}
+												},
+												Mobile: {
+													height: 30,
+													align: 'left',
+													backgroundColor: {
+														image: weatherIcons.Mobile
+													}
+												},
+												weatherHead: {
+													color: '#333',
+													height: 24,
+													align: 'left'
+												},
+												hr: {
+													borderColor: '#777',
+													width: '100%',
+													borderWidth: 0.5,
+													height: 0
+												},
+												value: {
+													width: 20,
+													padding: [0, 20, 0, 30],
+													align: 'left'
+												},
+												valueHead: {
+													color: '#333',
+													width: 20,
+													padding: [0, 20, 0, 30],
+													align: 'center'
+												},
+												rate: {
+													width: 40,
+													align: 'right',
+													padding: [0, 10, 0, 0]
+												},
+												rateHead: {
+													color: '#333',
+													width: 40,
+													align: 'center',
+													padding: [0, 10, 0, 0]
+												}
+											}
+										}
+									}
+								},
+								{value:1535, name: '本单位'}
+							],
+							itemStyle: {
+								emphasis: {
+									shadowBlur: 10,
+									shadowOffsetX: 0,
+									shadowColor: 'rgba(0, 0, 0, 0.5)'
+								}
+							}
+						}
+					]
+				};
 			
 			
-				var actualData1 = [ 8, 9, 10, 16, 15, 7]; //实际值
-				var warningData1 = [ 10, 10, 10, 10, 10, 10]; //预警值
+			var actualData1 = [ 8, 9, 10, 16, 15, 7]; //实际值
+			var warningData1 = [ 10, 10, 10, 10, 10, 10]; //预警值
 				
-				var actualData2 = [ 28, 19, 10, 26, 25, 17]; //实际值
-				var warningData2 = [ 20, 20, 20, 20, 20, 20]; //预警值
+			var actualData2 = [ 28, 19, 10, 26, 25, 17]; //实际值
+			var warningData2 = [ 20, 20, 20, 20, 20, 20]; //预警值
 				
-				var actualData3 = [ 8, 21, 10, 22, 7, 10]; //实际值
-				var warningData3 = [ 15, 15, 15, 15, 15, 15]; //预警值
+			var actualData3 = [ 8, 21, 10, 22, 7, 10]; //实际值
+			var warningData3 = [ 15, 15, 15, 15, 15, 15]; //预警值
 				
-				var actualData4 = [ 16, 12, 13, 15, 7, 8]; //实际值
-				var warningData4 = [ 18, 18, 18, 18, 18, 18]; //预警值
+			var actualData4 = [ 16, 12, 13, 15, 7, 8]; //实际值
+			var warningData4 = [ 18, 18, 18, 18, 18, 18]; //预警值
 				
-				var actualData5 = [ 9, 5, 5, 5, 7, 10]; //实际值
-				var warningData5 = [ 8, 8, 8, 8, 8, 8]; //预警值
+			var actualData5 = [ 9, 5, 5, 5, 7, 10]; //实际值
+			var warningData5 = [ 8, 8, 8, 8, 8, 8]; //预警值
 				
-				optionAccount = {
+			optionAccount = {
 					tooltip: {
 						trigger: 'axis',
 					},
@@ -818,7 +1012,9 @@
 			myChartMTrend.setOption(optionMTrend);
 			myChartQMedium.setOption(optionQMedium);
 			myChartSaleType.setOption(optionSaleType);
+			myChartSaleStructure.setOption(optionSaleStructure);
 			myChartMMedium.setOption(optionMMedium);
+			myChartContract.setOption(optionContract);
 			myChartAccount.setOption(optionAccount);
 			
 

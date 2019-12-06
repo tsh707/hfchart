@@ -36,7 +36,7 @@
 			optionMonthIndustry = {
 				color: colors,
 				title: {
-					text: '广告市场分析',
+					text: '广告市场增长率分析',
 					//x:'center',
 					subtext: ''
 				},
@@ -72,44 +72,13 @@
 				yAxis: [
 					{
 						type: 'value',
-						name: '总体(亿元)',
-						min: 0,
-						max: 250,
+						name: '增长率',
+						min: -100,
+						max: 100,
 						position: 'left',
 						axisLine: {
 							lineStyle: {
 								color: colors[0]
-							}
-						},
-						axisLabel: {
-							formatter: '{value}'
-						}
-					},
-					{
-						type: 'value',
-						name: '各媒介(千万元)',
-						min: 0,
-						max: 250,
-						position: 'right',
-						offset: 80,
-						axisLine: {
-							lineStyle: {
-								color: colors[1]
-							}
-						},
-						axisLabel: {
-							formatter: '{value}'
-						}
-					},
-					{
-						type: 'value',
-						name: '华风集团(百万元)',
-						min: 0,
-						max: 25,
-						position: 'right',
-						axisLine: {
-							lineStyle: {
-								color: colors[2]
 							}
 						},
 						axisLabel: {
@@ -120,31 +89,31 @@
 				series: [
 					{
 						name:'总体行业',
-						type:'bar',
-						data:[6.0, 4.9, 7.0, 3.2, 5.6, 26.7, 35.6, 62.2, 32.6, 6.0, 4.4, 5.3]
+						type:'line',
+						data:[6.0, 4.9, 7.0, 3.2, -5.6, 26.7, 35.6, 62.2, 32.6, 6.0, 4.4, 5.3]
 					},
 					{
 						name:'电视行业',
-						type:'bar',
-						yAxisIndex: 0,
-						data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 105.6, 112.2, 48.7, 18.8, 6.0, 2.3]
+						type:'line',
+						//yAxisIndex: 0,
+						data:[2.6, 5.9, 9.0, 26.4, -28.7, 70.7, 5.6, 12.2, 48.7, 18.8, 6.0, 2.3]
 					},
 					{
 						name:'广播行业',
-						type:'bar',
-						yAxisIndex: 1,
+						type:'line',
+						//yAxisIndex: 1,
 						data:[0.6, 0.9, 1.0, 2.4, 2.7, 1.7, 5.6, 4.2, 21.7, 1.8, 0.9, 0.3]
 					},
 					{
 						name:'互联网行业',
-						type:'bar',
-						yAxisIndex: 0,
-						data:[12.6, 25.9, 19.0, 36.4, 38.7, 170.7, 105.6, 212.2, 148.7, 68.8, 16.0, 22.3]
+						type:'line',
+						//yAxisIndex: 0,
+						data:[12.6, 25.9, 19.0, 36.4, 38.7, 70.7, 5.6, 12.2, 48.7, 68.8, 16.0, 22.3]
 					},
 					{
 						name:'华风集团',
 						type:'line',
-						yAxisIndex: 2,
+						//yAxisIndex: 2,
 						data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
 					}
 				]
